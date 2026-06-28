@@ -468,6 +468,10 @@
     <div class="booknote">Darstellungstext zusammengefasst nach <b>Buch S. 270, M 1 &amp; Randspalte „Rechtsextremismus“</b>. Zum Weiterlesen: die Original-Fotografie M 1 (Rostock-Lichtenhagen, 24.08.1992) und der Erläuterungstext S. 270.</div>
 
     <h3><span class="matref m-steel">Material M1 · Foto (Buch S. 270)</span><br>Rostock-Lichtenhagen, August 1992</h3>
+    <div class="figbox">
+      <img class="kari-img" src="rostock-lichtenhagen.png" width="1036" height="626" loading="lazy" alt="Foto Rostock-Lichtenhagen, August 1992: das „Sonnenblumenhaus“ mit einer großen Menschenmenge davor – Symbol für die rassistischen Ausschreitungen.">
+      <figcaption>Foto: Rostock-Lichtenhagen, August 1992 – das „Sonnenblumenhaus“ <b>(Buch S. 270, M 1)</b>.</figcaption>
+    </div>
     <p>Vor der überfüllten Zentralen Aufnahmestelle für Asylbewerber und dem „Sonnenblumenhaus“, in dem vietnamesische Vertragsarbeiter lebten, sammelten sich am 22. August 1992 rund 2000 Menschen. Etwa 200 bewarfen das Gebäude mit Steinen, später mit Molotowcocktails; zahlreiche Schaulustige applaudierten. Die Polizei war unterbesetzt und zog sich zeitweise zurück, sodass der Mob das Haus stürmen konnte. Die Eingeschlossenen retteten sich knapp über das Dach.</p>
     <p>Rostock-Lichtenhagen war kein Einzelfall, sondern Teil einer Welle: Schon 1991 hatte es in Hoyerswerda pogromartige Angriffe gegeben; 1992 folgte der Brandanschlag von Mölln, 1993 der von Solingen mit fünf Toten. Diese Taten richteten sich vor allem gegen Menschen mit türkischer Migrationsgeschichte und gegen Asylunterkünfte. Die Bilder vom applaudierenden Publikum in Rostock gingen um die Welt und gelten als Symbol für das Versagen von Staat und Gesellschaft in den frühen 1990er-Jahren.</p>
 
@@ -1792,32 +1796,5 @@ if(typeof refreshLocks==='function'){
   .dl-btn{background:var(--dienst);color:#fff}
   .dl-btn.alt{background:transparent;color:#fff}
 </style>
-<script>
-/* Signature-Tilt: Waage kippt bei Scroll im Hero + Zeigerbewegung. a11y-fest. */
-(function(){
-  var beam=document.getElementById('waageBeam');
-  if(!beam)return;
-  var pivot='410 120';
-  function set(a){beam.setAttribute('transform','rotate('+a.toFixed(2)+' '+pivot+')');}
-  if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches){set(-5);return;}
-  var target=0,cur=0,raf=0;
-  function loop(){cur+=(target-cur)*0.085;set(cur);
-    if(Math.abs(target-cur)>0.05){raf=requestAnimationFrame(loop);}else{raf=0;}}
-  function kick(){if(!raf)raf=requestAnimationFrame(loop);}
-  var hero=document.getElementById('start');
-  function onScroll(){var r=hero?hero.getBoundingClientRect():null;
-    var p=r?Math.min(1,Math.max(0,-r.top/(r.height||1))):0;
-    target=-8+p*16;kick();}
-  var wrap=document.querySelector('.tightrope');
-  if(wrap){
-    wrap.addEventListener('pointermove',function(e){var b=wrap.getBoundingClientRect();
-      target=((e.clientX-b.left)/b.width-0.5)*16;kick();});
-    wrap.addEventListener('pointerleave',function(){target=0;kick();});
-  }
-  addEventListener('scroll',onScroll,{passive:true});
-  onScroll();
-  setTimeout(function(){target=6;kick();setTimeout(function(){target=0;kick();},650);},420);
-})();
-</script>
 </body>
 </html>
