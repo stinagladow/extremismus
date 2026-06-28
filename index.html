@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCHÜLER · Demokratie zwischen Freiheit und Sicherheit – Lernstation Extremismus &amp; Terrorismus</title>
+<style>
+  :root{
+    --paper:#f3efe6;
+    --ink:#1a1714;
+    --ink-soft:#4a443c;
+    --line:#d8d0c2;
+    --accent:#9a2d2d;        /* signal red - extremism/danger */
+    --accent-soft:#c98a5a;
+    --steel:#2e3a44;         /* state / security */
+    --gold:#b89149;
+    --ok:#3f6f4a;
+    --shadow:rgba(26,23,20,.12);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    line-height:1.6;font-size:17px;
+  }
+  h1,h2,h3,.eyebrow,.chip,.timeline-year,nav,button,.q-meta{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+  }
+  a{color:var(--accent)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px}
+
+  /* ---------- progress bar ---------- */
+  #progress{position:fixed;top:0;left:0;height:4px;width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--gold));z-index:200;transition:width .25s}
+
+  /* ---------- sticky nav ---------- */
+  nav{position:sticky;top:0;z-index:100;background:rgba(243,239,230,.95);
+    backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;
+    padding:8px 12px;align-items:center}
+  nav a{font-size:12.5px;text-decoration:none;color:var(--ink-soft);white-space:nowrap;
+    padding:6px 9px;border-radius:6px;letter-spacing:.02em}
+  nav a:hover{background:var(--line);color:var(--ink)}
+  .nav-clock{margin-left:auto;font-size:12px;color:var(--ink-soft);
+    border:1px solid var(--line);border-radius:20px;padding:5px 11px;white-space:nowrap}
+  .nav-clock b{color:var(--accent)}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:64px 0 40px;border-bottom:2px solid var(--ink);position:relative;overflow:hidden}
+  .hero .wrap{position:relative;z-index:2}
+  .eyebrow{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin-bottom:14px}
+  header.hero h1{font-size:clamp(30px,6vw,52px);line-height:1.08;margin:0 0 14px;
+    font-weight:800;letter-spacing:-.01em}
+  header.hero p.lede{font-size:18px;color:var(--ink-soft);max-width:620px;margin:0 0 8px}
+  .tightrope{margin:30px 0 4px;height:108px;position:relative}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .chip{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:6px 13px;color:var(--ink-soft)}
+  .chip b{color:var(--ink)}
+
+  /* ---------- sections ---------- */
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .sec-num{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:800;
+    font-size:13px;color:#fff;background:var(--steel);border-radius:50%;
+    width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+  h2{font-size:clamp(22px,4vw,30px);margin:0;font-weight:800;letter-spacing:-.01em}
+  .sec-sub{color:var(--ink-soft);font-size:15px;margin:2px 0 26px;font-style:italic}
+  h3{font-size:19px;margin:30px 0 8px;font-weight:700}
+  p{margin:0 0 14px}
+
+  /* ---------- source / darstellungstext box ---------- */
+  .source{background:#fbf9f4;border:1px solid var(--line);border-left:4px solid var(--steel);
+    border-radius:4px;padding:16px 18px;margin:18px 0;font-size:15.5px}
+  .source .src-tag{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--steel);font-weight:700;margin-bottom:6px;display:block}
+  .quote{border-left:4px solid var(--accent);background:#fbf3f1;padding:14px 18px;margin:18px 0;
+    font-style:italic;border-radius:4px;color:#3a2422}
+  .quote .who{display:block;font-style:normal;font-size:13px;color:var(--ink-soft);
+    margin-top:8px;font-family:"Helvetica Neue",Arial,sans-serif}
+  .booknote{font-size:13px;color:var(--ink-soft);font-family:"Helvetica Neue",Arial,sans-serif;
+    background:#efe9dc;border-radius:4px;padding:8px 12px;margin:6px 0 14px;display:flex;gap:8px;align-items:flex-start}
+  .booknote::before{content:"📖";flex:0 0 auto}
+
+  /* ---------- video ---------- */
+  .video{display:flex;gap:13px;align-items:center;text-decoration:none;color:inherit;
+    background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:14px 0 0;
+    transition:.15s}
+  .video:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:0 4px 14px var(--shadow)}
+  .play{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--accent);
+    display:flex;align-items:center;justify-content:center}
+  .play::after{content:"";border-left:14px solid #fff;border-top:9px solid transparent;
+    border-bottom:9px solid transparent;margin-left:3px}
+  .video .vtitle{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:14.5px}
+  .video .vmeta{font-size:12.5px;color:var(--ink-soft)}
+  .vprompt{background:#fbf3f1;border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;
+    padding:10px 14px 11px;margin:0 0 14px;font-size:13.5px;color:var(--ink)}
+  .vprompt b{font-family:"Helvetica Neue",Arial,sans-serif}
+  .vprompt .vp-label{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--accent);font-weight:700;display:block;margin-bottom:3px}
+
+  /* ---------- vocabulary ---------- */
+  .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:18px 0}
+  .vcard{background:#fff;border:1px solid var(--line);border-radius:8px;padding:0;cursor:pointer;
+    perspective:900px;min-height:104px}
+  .vcard-inner{position:relative;transition:transform .5s;transform-style:preserve-3d;min-height:104px}
+  .vcard.flip .vcard-inner{transform:rotateY(180deg)}
+  .vface{position:absolute;inset:0;backface-visibility:hidden;padding:14px 16px;
+    display:flex;flex-direction:column;justify-content:center}
+  .vfront .vterm{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:16px;color:var(--steel)}
+  .vfront .vhint{font-size:12px;color:var(--ink-soft);margin-top:6px;font-family:"Helvetica Neue",Arial,sans-serif}
+  .vback{transform:rotateY(180deg);background:#f6f1e8;border-radius:8px;font-size:13.5px}
+
+  /* ---------- memory game ---------- */
+  .memory-wrap{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px;margin:20px 0}
+  .mem-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+  .mem-stat{font-family:"Helvetica Neue",Arial,sans-serif;font-size:13px;color:var(--ink-soft)}
+  .mem-stat b{color:var(--accent)}
+  .mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+  .mem-card{aspect-ratio:1/1;border-radius:8px;cursor:pointer;perspective:700px;min-height:74px}
+  .mem-inner{position:relative;width:100%;height:100%;transition:transform .4s;transform-style:preserve-3d}
+  .mem-card.open .mem-inner,.mem-card.matched .mem-inner{transform:rotateY(180deg)}
+  .mem-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;
+    font-family:"Helvetica Neue",Arial,sans-serif}
+  .mem-front{background:var(--steel);color:#fff;font-size:24px;font-weight:800}
+  .mem-back{background:#f6f1e8;border:1px solid var(--line);transform:rotateY(180deg);
+    font-size:12px;line-height:1.25;color:var(--ink)}
+  .mem-card.matched .mem-back{background:#eef5ef;border-color:var(--ok)}
+  .mem-back.term{font-weight:700;color:var(--steel);font-size:13px}
+  .mem-done{margin-top:12px;background:#eef5ef;border:1px solid var(--ok);border-radius:8px;
+    padding:10px 14px;font-size:14px;display:none;font-family:"Helvetica Neue",Arial,sans-serif}
+  .mem-done.show{display:block}
+  @media(max-width:560px){.mem-grid{grid-template-columns:repeat(4,1fr);gap:6px}.mem-front{font-size:18px}.mem-back{font-size:10px}}
+
+  /* ---------- station locking (student mode) ---------- */
+  section.locked{position:relative}
+  section.locked .wrap > *:not(.sec-head):not(.lock-note){
+    filter:blur(5px);opacity:.45;pointer-events:none;user-select:none}
+  .lock-note{display:none;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:8px;padding:16px 18px;margin:14px 0;font-family:"Helvetica Neue",Arial,sans-serif;
+    align-items:center;gap:12px}
+  section.locked .lock-note{display:flex}
+  .lock-note .lock-ico{font-size:24px;flex:0 0 auto}
+  .lock-note b{color:var(--accent)}
+  .sec-done-badge{display:none;font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;
+    font-weight:700;color:#fff;background:var(--ok);border-radius:20px;padding:3px 12px;margin-left:10px;
+    vertical-align:middle}
+  section.section-done .sec-done-badge{display:inline-block}
+  .sec-progress{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12.5px;color:var(--ink-soft);
+    margin:-6px 0 14px}
+  .version-banner{font-family:"Helvetica Neue",Arial,sans-serif;font-size:13px;font-weight:700;
+    text-align:center;padding:8px;color:#fff}
+  .version-banner.teacher{background:var(--steel)}
+  .version-banner.student{background:var(--gold)}
+
+  /* ---------- material overview ---------- */
+  .mat-table{margin:18px 0 4px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .mat-row{display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;
+    padding:10px 14px;border-top:1px solid var(--line);background:#fff;font-size:14.5px}
+  .mat-row:first-child{border-top:none}
+  .mat-row:nth-child(even){background:#fbf9f4}
+  .mat-id{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:13.5px;color:#fff;
+    background:var(--accent);border-radius:6px;padding:4px 0;text-align:center}
+  .mat-d{color:var(--ink)}
+  .mat-s{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11.5px;color:var(--ink-soft);
+    background:#efe9dc;border-radius:20px;padding:3px 10px;white-space:nowrap}
+  @media(max-width:560px){.mat-row{grid-template-columns:48px 1fr;gap:8px}.mat-s{display:none}}
+  .matref{display:inline-flex;align-items:center;gap:6px;font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11.5px;font-weight:700;letter-spacing:.03em;color:#fff;background:var(--accent-soft);
+    border-radius:5px;padding:3px 9px;margin-bottom:4px}
+  .matref.m-steel{background:var(--steel)}
+  .task-ref{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;color:var(--accent);
+    font-weight:700;background:#fbf3f1;border:1px dashed var(--accent);border-radius:6px;
+    padding:5px 10px;display:inline-block;margin-bottom:10px}
+  .task-ref::before{content:"↳ ";color:var(--ink-soft);font-weight:400}
+
+  /* ---------- operator training ---------- */
+  .op-toggle{position:fixed;bottom:20px;right:20px;z-index:160;background:var(--accent);color:#fff;
+    border:none;border-radius:30px;padding:13px 22px;font-family:"Helvetica Neue",Arial,sans-serif;
+    font-weight:800;font-size:14.5px;cursor:pointer;box-shadow:0 6px 22px rgba(154,45,45,.42);
+    display:flex;align-items:center;gap:8px;animation:opPulse 2.6s ease-in-out 1s 3}
+  .op-toggle:hover{background:#7e2424}
+  @keyframes opPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+  .op-panel{position:fixed;right:14px;bottom:70px;width:min(340px,calc(100vw - 28px));
+    max-height:62vh;overflow-y:auto;background:#fff;border:1px solid var(--line);border-radius:12px;
+    box-shadow:0 12px 40px rgba(26,23,20,.28);padding:16px 18px;z-index:150;display:none}
+  .op-panel.show{display:block;animation:fade .25s}
+  .op-panel h4{font-family:"Helvetica Neue",Arial,sans-serif;margin:0 0 4px;font-size:15px;color:var(--steel)}
+  .op-panel .op-intro{font-size:12.5px;color:var(--ink-soft);margin:0 0 12px}
+  .op-item{border-top:1px solid var(--line);padding:9px 0}
+  .op-item:first-of-type{border-top:none}
+  .op-name{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:13.5px;color:var(--accent)}
+  .op-afb{font-size:10.5px;color:#fff;background:var(--gold);border-radius:4px;padding:1px 6px;margin-left:6px;
+    font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700}
+  .op-def{font-size:13px;color:var(--ink);margin:3px 0 0}
+  .op-close{position:absolute;top:10px;right:12px;border:none;background:none;font-size:20px;
+    cursor:pointer;color:var(--ink-soft);line-height:1}
+  .op-hint{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11.5px;color:var(--gold);
+    font-weight:700;margin:2px 0 8px}
+
+  /* ---------- learning goals ---------- */
+  .goals{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);
+    border-radius:8px;padding:18px 20px;margin:26px 0 4px}
+  .goals-h{font-family:"Helvetica Neue",Arial,sans-serif;font-size:16px;margin:0 0 4px;color:var(--steel)}
+  .goals-intro{font-size:14px;color:var(--ink-soft);margin:0 0 8px;font-style:italic}
+  .goals-list{margin:0;padding-left:20px}
+  .goals-list li{font-size:14.5px;margin:6px 0;color:var(--ink)}
+  .goals-tip{font-size:13.5px;color:var(--ink-soft);background:#f6f1e8;border-radius:6px;
+    padding:10px 13px;margin:14px 0 0;font-family:"Helvetica Neue",Arial,sans-serif}
+
+  /* ---------- differentiation ---------- */
+  .diff{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px}
+  .diff-row{display:flex;gap:9px;align-items:flex-start}
+  .diff-btn{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12.5px;font-weight:700;
+    border:1px solid var(--line);background:#fcfbf8;border-radius:7px;padding:8px 12px;cursor:pointer;
+    flex:0 0 auto;transition:.12s;text-align:left}
+  .diff-btn.help{border-color:var(--steel);color:var(--steel)}
+  .diff-btn.help:hover{background:#eef1f3}
+  .diff-btn.ext{border-color:var(--gold);color:#7a5e1f}
+  .diff-btn.ext:hover{background:#f6efdd}
+  .diff-body{display:none;font-size:14px;background:#f6f8f4;border-radius:7px;padding:11px 13px;
+    margin-top:2px;border-left:3px solid var(--ok)}
+  .diff-body.show{display:block;animation:fade .25s}
+  .diff-body.help-body{background:#eef1f3;border-left-color:var(--steel)}
+  .diff-body.ext-body{background:#f9f4e6;border-left-color:var(--gold)}
+  .diff-label{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10.5px;letter-spacing:.06em;
+    text-transform:uppercase;font-weight:700;display:block;margin-bottom:4px}
+  .diff-label.h{color:var(--steel)}
+  .diff-label.e{color:#7a5e1f}
+
+  /* ---------- final quiz ---------- */
+  #quiz .quiz-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:16px 0}
+  #quiz .quiz-q{font-weight:600;margin-bottom:10px}
+  .quiz-progress{font-family:"Helvetica Neue",Arial,sans-serif;font-size:13px;color:var(--ink-soft);margin-bottom:8px}
+  .quiz-result{background:#eef5ef;border:1px solid var(--ok);border-radius:10px;padding:18px;
+    text-align:center;display:none;margin-top:10px}
+  .quiz-result.show{display:block}
+  .quiz-result .qr-big{font-size:34px;font-weight:800;font-family:"Helvetica Neue",Arial,sans-serif;color:var(--ok)}
+
+  /* ---------- tasks ---------- */
+  .task{background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:20px 20px 18px;margin:22px 0;box-shadow:0 1px 0 var(--shadow)}
+  .q-meta{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+  .q-type{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+    color:#fff;background:var(--accent-soft);border-radius:4px;padding:3px 8px}
+  .q-type.mc{background:var(--steel)}
+  .q-type.frei{background:var(--accent)}
+  .q-type.kari{background:var(--gold)}
+  .q-type.schau{background:var(--ok)}
+  .q-type.zeit{background:#6a4a7a}
+  .q-pts{font-size:11px;color:var(--ink-soft);font-family:"Helvetica Neue",Arial,sans-serif}
+  .qtext{font-weight:600;margin-bottom:12px}
+  .qtext .sub{font-weight:400;color:var(--ink-soft);font-size:14.5px;display:block;margin-top:4px}
+
+  /* multiple choice */
+  .opt{display:block;border:1px solid var(--line);border-radius:7px;padding:11px 13px;margin:7px 0;
+    cursor:pointer;font-size:15px;transition:.12s;background:#fcfbf8}
+  .opt:hover{border-color:var(--steel)}
+  .opt.correct{border-color:var(--ok);background:#eef5ef}
+  .opt.wrong{border-color:var(--accent);background:#fbeeed}
+  .opt.locked{pointer-events:none;opacity:.85}
+  .opt .mark{float:right;font-weight:700}
+
+  /* free text */
+  textarea{width:100%;min-height:96px;border:1px solid var(--line);border-radius:8px;
+    padding:11px 12px;font-family:inherit;font-size:15px;resize:vertical;background:#fcfbf8;color:var(--ink)}
+  textarea:focus{outline:2px solid var(--steel);border-color:var(--steel)}
+  .ta-meter{font-size:12px;color:var(--ink-soft);margin:6px 0 0;font-family:"Helvetica Neue",Arial,sans-serif;
+    display:flex;justify-content:space-between;align-items:center}
+  .ta-bar{height:5px;background:var(--line);border-radius:3px;flex:1;margin:0 0 0 12px;overflow:hidden;max-width:200px}
+  .ta-bar i{display:block;height:100%;width:0%;background:var(--accent);transition:width .2s}
+  .btn{font-family:"Helvetica Neue",Arial,sans-serif;font-size:13.5px;font-weight:600;
+    border:none;border-radius:7px;padding:9px 16px;cursor:pointer;background:var(--steel);color:#fff;
+    margin-top:12px;transition:.15s}
+  .btn:hover{background:#1f2830}
+  .btn:disabled{background:var(--line);color:#9b9486;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--steel);border:1px solid var(--steel)}
+  .reveal{display:none;margin-top:14px;border-top:1px dashed var(--line);padding-top:14px;
+    font-size:15px;background:#f6f8f4;border-radius:0 0 8px 8px;padding:14px 14px 4px}
+  .reveal.show{display:block;animation:fade .3s}
+  .reveal .rl{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ok);font-weight:700;margin-bottom:6px}
+  @keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .self-check{display:flex;gap:8px;margin-top:12px;align-items:center;font-size:13px;
+    font-family:"Helvetica Neue",Arial,sans-serif;color:var(--ink-soft)}
+  .self-check button{border:1px solid var(--line);background:#fff;border-radius:6px;
+    padding:6px 11px;cursor:pointer;font-size:13px}
+  .self-check button.sel{border-color:var(--ok);background:#eef5ef;font-weight:700}
+  .self-check button.selno{border-color:var(--accent);background:#fbeeed;font-weight:700}
+
+  /* karikatur / schaubild visual blocks */
+  .figbox{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;margin:16px 0}
+  .figbox figcaption{font-size:13px;color:var(--ink-soft);margin-top:8px;
+    font-family:"Helvetica Neue",Arial,sans-serif}
+
+  /* timeline */
+  .timeline{position:relative;margin:24px 0 10px;padding-left:0}
+  .tl-item{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:10px 0;position:relative}
+  .timeline-year{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:15px;
+    color:var(--accent);text-align:right}
+  .tl-body{border-left:2px solid var(--line);padding-left:18px;position:relative}
+  .tl-body::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;
+    border-radius:50%;background:var(--accent);border:2px solid var(--paper)}
+  .tl-body.steel::before{background:var(--steel)}
+  .tl-body b{font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px}
+  .tl-body p{font-size:14.5px;margin:3px 0 0;color:var(--ink-soft)}
+
+  /* summary */
+  #zusammenfassung{background:var(--steel);color:#efe9dc;border:none}
+  #zusammenfassung h2{color:#fff}
+  #zusammenfassung .sec-num{background:var(--gold);color:var(--ink)}
+  #zusammenfassung .sec-sub{color:#b9c2c9}
+  .sumcard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:10px;padding:16px 18px;margin:14px 0}
+  .sumcard h3{color:#fff;margin:0 0 6px;font-size:16px}
+  .sumcard p{color:#cfd6db;font-size:14.5px;margin:0}
+  .score-panel{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+    border-radius:12px;padding:22px;text-align:center;margin:20px 0}
+  .score-big{font-size:46px;font-weight:800;font-family:"Helvetica Neue",Arial,sans-serif;color:var(--gold)}
+  .score-panel p{color:#cfd6db;margin:4px 0 0}
+  .dl-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+  .dl-btn{background:var(--gold);color:var(--ink);font-weight:700;text-decoration:none;
+    padding:11px 18px;border-radius:8px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:14px}
+  .dl-btn.alt{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+
+  footer{padding:34px 0 60px;font-size:12.5px;color:var(--ink-soft);
+    font-family:"Helvetica Neue",Arial,sans-serif;text-align:center}
+  footer a{color:var(--ink-soft)}
+
+  @media(max-width:560px){
+    body{font-size:16px}
+    .tl-item{grid-template-columns:50px 1fr;gap:10px}
+    header.hero{padding:44px 0 30px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<div id="versionBanner" class="version-banner" style="display:none"></div>
+<div id="progress"></div>
+
+<!-- Operatoren-Hilfe -->
+<button class="op-toggle" id="opToggle" aria-expanded="false">📘 Operatoren-Hilfe</button>
+<div class="op-panel" id="opPanel" role="dialog" aria-label="Operatoren-Hilfe">
+  <button class="op-close" id="opClose" aria-label="schließen">×</button>
+  <h4>Operatoren – was ist gefragt?</h4>
+  <p class="op-intro">Die fett gedruckten Wörter in den Aufgaben sagen dir, <b>wie</b> du antworten sollst. AFB = Anforderungsbereich (I leicht, II mittel, III anspruchsvoll).</p>
+  <div id="opList"></div>
+</div>
+
+
+<nav>
+  <div class="nav-inner">
+    <a href="#start">Start</a>
+    <a href="#wortschatz">Wortschatz</a>
+    <a href="#deutschland">D 1990–2020</a>
+    <a href="#international">9/11</a>
+    <a href="#gesetze">Gesetze</a>
+    <a href="#heute">Heute</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#zusammenfassung">Bilanz</a>
+    <span class="nav-clock">⏱ Richtzeit <b>≈ 60 Min</b></span>
+  </div>
+</nav>
+
+<header class="hero" id="start">
+  <div class="wrap">
+    <div class="eyebrow">Geschichte · Q12 · Selbstlernstation</div>
+    <h1>Aus den 1990ern gelernt? Wie sich die Bundesrepublik gegen Extremismus und Terror verteidigt – und wo ihre Grenzen liegen.</h1>
+    <p class="lede">Seit der Wiedervereinigung steht die Demokratie unter Druck: rechte Gewalt von Rostock über den NSU bis Halle und Hanau, dazu der internationale Terrorismus seit dem 11. September 2001. In vier Stationen prüfst du, wie der Staat reagiert hat – mit Gesetzen, Verboten und Prävention – und beurteilst am Ende selbst, wo die Grenzen einer <em>wehrhaften Demokratie</em> liegen.</p>
+
+    <div class="tightrope">
+      <!-- Signature: a democracy-figure balancing a tightrope between Freiheit and Sicherheit over an abyss labelled Terror (after Mester, M11) -->
+      <svg viewBox="0 0 820 108" width="100%" height="108" role="img" aria-label="Demokratie balanciert auf einem Seil zwischen Freiheit und Sicherheit über dem Abgrund Terror">
+        <line x1="40" y1="22" x2="40" y2="104" stroke="#2e3a44" stroke-width="7"/>
+        <line x1="780" y1="22" x2="780" y2="104" stroke="#2e3a44" stroke-width="7"/>
+        <line x1="40" y1="40" x2="780" y2="40" stroke="#1a1714" stroke-width="2.5"/>
+        <text x="40" y="16" font-family="Helvetica Neue,Arial" font-size="12" font-weight="700" fill="#2e3a44">FREIHEIT</text>
+        <text x="780" y="16" font-family="Helvetica Neue,Arial" font-size="12" font-weight="700" fill="#2e3a44" text-anchor="end">SICHERHEIT</text>
+        <text x="410" y="98" font-family="Helvetica Neue,Arial" font-size="13" letter-spacing="3" font-weight="800" fill="#9a2d2d" text-anchor="middle">A B G R U N D&#160;&#160;·&#160;&#160;T E R R O R</text>
+        <!-- pole + figure -->
+        <line x1="380" y1="40" x2="440" y2="40" stroke="#9a2d2d" stroke-width="2.5"/>
+        <circle cx="410" cy="26" r="7" fill="#1a1714"/>
+        <line x1="410" y1="33" x2="410" y2="40" stroke="#1a1714" stroke-width="3"/>
+      </svg>
+    </div>
+
+    <div class="meta-row">
+      <span class="chip">⏳ Richtzeit <b>≈ 60 Minuten</b></span>
+      <span class="chip">📚 Quellenbasis <b>Buch S. 270–276</b></span>
+      <span class="chip">✅ Aufgaben mit <b>Selbstkontrolle</b></span>
+      <span class="chip">🎬 5 Videos mit <b>Schauzeit-Angabe</b></span>
+    </div>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:22px;font-family:'Helvetica Neue',Arial">
+      <b>So arbeitest du:</b> Lies die Darstellungstexte und schau dir die Materialien an. Jede Aufgabe trägt oben den Hinweis,
+      <span style="color:var(--accent);font-weight:700">zu welchem Material</span> sie gehört. Freitext-Antworten werden erst freigeschaltet,
+      wenn du selbst ausführlich geantwortet hast (mehrere Sätze). Bei den Videos steht jeweils, <b>welchen Abschnitt</b> du schauen sollst –
+      schau wirklich nur diesen Teil, damit du die Station in der vorgesehenen Zeit schaffst. Unten rechts findest du jederzeit die
+      <span style="color:var(--accent);font-weight:700">Operatoren-Hilfe</span>: Dort steht, was „nenne“, „erläutere“, „beurteile“ usw. genau verlangen.</p>
+
+    <div class="goals">
+      <h3 class="goals-h">Was du in dieser Stunde lernst</h3>
+      <p class="goals-intro">Nach dieser Lernstation kannst du …</p>
+      <ul class="goals-list">
+        <li>die wichtigsten rechtsterroristischen und islamistischen Gewalttaten von 1990 bis heute <b>benennen und zeitlich einordnen</b> (Rostock, NSU, 9/11, Halle, Hanau);</li>
+        <li><b>erklären</b>, wie der Staat mit repressiven und präventiven Mitteln reagiert hat und warum das umstritten ist;</li>
+        <li>Materialien wie <b>Karikaturen, Statistiken und Zeitzeugenaussagen analysieren</b>;</li>
+        <li><b>beurteilen</b>, wie eine wehrhafte Demokratie das Spannungsfeld von Freiheit und Sicherheit ausbalanciert;</li>
+        <li>die Bedeutung von <b>Aufarbeitung und Erinnerung</b> für die Opfer und die Gesellschaft einschätzen.</li>
+      </ul>
+      <p class="goals-tip">💡 <b>Hilfe gefällig?</b> Unten rechts schwebt der Button <b>„📘 Operatoren-Hilfe“</b> – immer sichtbar. Klick ihn an, wenn du nicht weißt, was ein Operator von dir verlangt. Bei jeder Aufgabe findest du außerdem unten einen Hinweis <b>„Hilfe / Tipp“</b> und – wenn du schnell fertig bist – eine <b>Erweiterungsaufgabe</b>.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ================= WORTSCHATZ ================= -->
+<section id="wortschatz">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">0</span><h2>Wortschatz – die Begriffe klären</h2></div>
+    <p class="sec-sub">Klicke jede Karte an, um die Definition aufzudecken. Diese Begriffe brauchst du im ganzen Modul.</p>
+
+    <div class="vocab-grid" id="vocab"></div>
+
+    <h3>Kontrolle: Memory – Begriff zu Definition</h3>
+    <p style="font-size:14.5px;color:var(--ink-soft);margin:0 0 4px;font-family:'Helvetica Neue',Arial">
+      Decke immer zwei Karten auf und finde die passenden Paare aus <b>Begriff</b> und <b>Kurzdefinition</b>.
+      Ein Paar bleibt offen, wenn es zusammengehört. So prüfst du, ob du die Begriffe wirklich verstanden hast.</p>
+
+    <div class="memory-wrap">
+      <div class="mem-bar">
+        <span class="mem-stat">Paare gefunden: <b id="memPairs">0</b> / 6</span>
+        <span class="mem-stat">Versuche: <b id="memTries">0</b></span>
+        <button class="btn ghost" id="memReset" style="margin-top:0">Neu mischen</button>
+      </div>
+      <div class="mem-grid" id="memGrid"></div>
+      <div class="mem-done" id="memDone">✅ Alle Paare gefunden! Du beherrschst die Kernbegriffe – weiter zu den Anschlägen.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEUTSCHLAND ================= -->
+<section id="deutschland">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">1</span><h2>Rechte Gewalt in Deutschland, 1990–2020</h2><span class="sec-done-badge">✓ erledigt</span></div>
+    <div class="lock-note"><span class="lock-ico">🔒</span><span>Diese Station ist noch gesperrt. Bearbeite zuerst <b>Wortschatz</b> vollständig – sobald alle Aufgaben dort bearbeitet sind, öffnet sich Station 1 automatisch.</span></div>
+    <p class="sec-sub">Von Rostock-Lichtenhagen über den NSU bis Halle und Hanau.</p>
+
+    <p>Die Jahre nach der Wiedervereinigung, besonders 1991 bis 1994, waren von rechtsextremer Gewalt geprägt. Angegriffen wurden Menschen mit Migrationsgeschichte, Asylsuchende, Sinti und Roma, Obdachlose, Menschen mit Behinderung, Homosexuelle und politische Gegner. Trauriger Höhepunkt waren pogromartige Ausschreitungen und Brandanschläge auf Wohnhäuser. Wer die freiheitlich-demokratische Grundordnung gewaltsam beseitigen will und sich am historischen Nationalsozialismus orientiert, gilt als rechtsextrem; planmäßige Gewalt zu diesem Zweck nennt man Rechtsterrorismus.</p>
+
+    <div class="booknote">Darstellungstext zusammengefasst nach <b>Buch S. 270, M 1 &amp; Randspalte „Rechtsextremismus“</b>. Zum Weiterlesen: die Original-Fotografie M 1 (Rostock-Lichtenhagen, 24.08.1992) und der Erläuterungstext S. 270.</div>
+
+    <h3><span class="matref m-steel">Material M1 · Foto (Buch S. 270)</span><br>Rostock-Lichtenhagen, August 1992</h3>
+    <p>Vor der überfüllten Zentralen Aufnahmestelle für Asylbewerber und dem „Sonnenblumenhaus“, in dem vietnamesische Vertragsarbeiter lebten, sammelten sich am 22. August 1992 rund 2000 Menschen. Etwa 200 bewarfen das Gebäude mit Steinen, später mit Molotowcocktails; zahlreiche Schaulustige applaudierten. Die Polizei war unterbesetzt und zog sich zeitweise zurück, sodass der Mob das Haus stürmen konnte. Die Eingeschlossenen retteten sich knapp über das Dach.</p>
+    <p>Rostock-Lichtenhagen war kein Einzelfall, sondern Teil einer Welle: Schon 1991 hatte es in Hoyerswerda pogromartige Angriffe gegeben; 1992 folgte der Brandanschlag von Mölln, 1993 der von Solingen mit fünf Toten. Diese Taten richteten sich vor allem gegen Menschen mit türkischer Migrationsgeschichte und gegen Asylunterkünfte. Die Bilder vom applaudierenden Publikum in Rostock gingen um die Welt und gelten als Symbol für das Versagen von Staat und Gesellschaft in den frühen 1990er-Jahren.</p>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 1 · Material: M1 (Foto Rostock-Lichtenhagen)</span>
+      <div class="q-meta"><span class="q-type kari">Bildanalyse</span></div>
+      <p class="qtext">Das Foto M 1 zeigt das brennende „Sonnenblumenhaus“ und die Menge davor. Beschreibe, was zu sehen ist, und erläutere, warum gerade dieses Bild zum Symbol für rechte Gewalt der 1990er-Jahre wurde.
+        <span class="sub">Denk an: Tatort, Rolle der Schaulustigen, Wirkung der Bilder in den Medien.</span></p>
+      <textarea data-min="220" placeholder="Bildbeschreibung + Erläuterung der Symbolwirkung (mehrere Sätze)…"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p><b>Beschreibung:</b> Das Foto zeigt das nächtliche „Sonnenblumenhaus“ in Rostock-Lichtenhagen, aus dessen Fenstern Flammen und Rauch schlagen. Davor steht eine große Menschenmenge; Einsatzkräfte sind zu erkennen. Die Szene wirkt chaotisch und bedrohlich.</p>
+        <p><b>Symbolwirkung:</b> Das Bild wurde zum Symbol, weil es mehrere Dinge zugleich zeigt: die offene rassistische Gewalt gegen eine Asylunterkunft und ein Wohnheim vietnamesischer Vertragsarbeiter, das zustimmende oder schaulustige Publikum (bis zu 3000 Menschen), das die Täter anfeuerte, und das Versagen von Polizei und Behörden, die die Lage zeitweise nicht unter Kontrolle hatten. Über das Fernsehen gingen die Bilder bundesweit und international und machten das Ausmaß fremdenfeindlicher Gewalt nach der Wiedervereinigung sichtbar. Rostock-Lichtenhagen gilt seitdem als Wendepunkt und Initialzündung einer ganzen Welle rechtsextremer Gewalt. <em>(vgl. Buch S. 270, M 1)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Richtig</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+    </div>
+
+    <div class="quote">
+      „Die Gewalttäter waren gut organisiert.“ – Der damalige Ausländerbeauftragte schildert, wie sich die Lage über Wochen zuspitzte, wie ein anonymer Anrufer schon Tage vorher drohte, man werde „für Ordnung sorgen“, und wie zunächst nur rund 25 Polizisten etwa 100 gewaltbereiten Angreifern gegenüberstanden.
+      <span class="who"><b>Material M2</b> · sinngemäß nach dem Interview mit Wolfgang Richter, 2022 — Originalquelle: Buch S. 273 f., M 5</span>
+    </div>
+    <div class="booknote">Das wörtliche Interview steht im Buch (M 5, S. 273 f.). Lies dort die Originalpassagen zur Eskalation der zweiten Nacht und zum Versagen der Behörden.
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          Geh in zwei Schritten vor: Erst <em>beschreiben</em> (Was sehe ich? Brennendes Haus, Menge, Einsatzkräfte), dann <em>erläutern</em>, warum gerade dieses Bild zum Symbol wurde. Den Operator „beschreiben/erläutern“ erklärt die 📘 Operatoren-Hilfe unten rechts.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Recherchiere oder überlege: Welche <b>politische Folge</b> hatte Rostock-Lichtenhagen direkt (Stichwort Asylrecht 1993)? Formuliere in zwei Sätzen, wie aus einer Gewalttat eine Gesetzesänderung wurde.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 2 · Material: M2 (Zeitzeuge Richter)</span>
+      <div class="q-meta"><span class="q-type zeit">Zeitzeugen-Arbeit</span></div>
+      <p class="qtext">Arbeite aus der Aussage von Wolfgang Richter heraus, welche <b>Vorwürfe</b> er gegenüber Politik und Polizei erhebt. Begründe mit konkreten Hinweisen aus dem Zitat.</p>
+      <textarea data-min="200" placeholder="Vorwürfe benennen und mit Hinweisen aus dem Zitat belegen…"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p>Richter wirft den Behörden vor, die Gewalt <b>vorhersehbar</b> gewesen sei und trotzdem nichts unternommen worden sei: Ein anonymer Anrufer kündigte Tage vorher an, man werde „für Ordnung sorgen“ – die Drohung war also bekannt. Außerdem kritisiert er die <b>massive Unterbesetzung</b> der Polizei: Rund 25 Beamte standen etwa 100 gewaltbereiten Angreifern gegenüber, dazu Tausende Schaulustige. Die Politik habe versichert, die Lage ernst zu nehmen, aber faktisch nichts getan. Der Vorwurf lautet also: Versagen durch Untätigkeit und Fehleinschätzung, obwohl die Eskalation absehbar war. <em>(vgl. Buch S. 273 f., M 5)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Richtig</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+    </div>
+
+    <div class="video" href="https://www.bpb.de/kurz-knapp/lexika/politiklexikon/296447/nationalsozialistischer-untergrund-nsu/" target="_blank" rel="noopener" onclick="window.open(this.getAttribute('href'),'_blank');return false;">
+      <span class="play"></span>
+      <span><span class="vtitle">Kurzüberblick: Der NSU (bpb-Politiklexikon)</span>
+      <span class="vmeta">bpb · kompakter Lesetext · ⏱ ca. 3 Min lesen</span></span>
+    </div>
+    <div class="vprompt"><span class="vp-label">Arbeitsauftrag zum Video / Text</span>
+      <b>Nach dem Lesen:</b> Notiere stichpunktartig, <b>warum die Behörden die NSU-Mordserie so lange nicht als rechtsterroristisch erkannten</b>. Diese Notizen brauchst du für die Multiple-Choice-Aufgabe und für die Abschluss-Beurteilung in Station 4.
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          „Herausarbeiten“ heißt: zentrale Aussagen gezielt aus dem Zitat entnehmen. Unterstreiche jede Stelle, an der ein <em>Vorwurf</em> steckt (Drohung vorher bekannt? Polizei zu wenige? Politik untätig?). Mehr zum Operator in der 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Überlege: Warum ist eine <b>Zeitzeugenaussage</b> als Quelle wertvoll – und wo liegt ihre Grenze (Subjektivität)? Schreibe zwei Sätze zur Quellenkritik.</div>
+      </div>
+    </div>
+
+    <h3><span class="matref m-steel">Material M3 · Text (Buch S. 271)</span><br>Der NSU – die größte rechtsterroristische Mordserie der Bundesrepublik</h3>
+    <p>Die Terrorgruppe „Nationalsozialistischer Untergrund“ bestand im Kern aus Uwe Mundlos, Uwe Böhnhardt und Beate Zschäpe aus Jena, die 1998 untertauchten. Zwischen 2000 und 2007 ermordete der NSU neun Kleinunternehmer mit Migrationsgeschichte sowie die Polizistin Michèle Kiesewetter und verübte Sprengstoffanschläge. Jahrelang verdächtigten Behörden die Opferfamilien selbst und sprachen abwertend von „Dönermorden“. Erst im November 2011 wurde der rechtsterroristische Hintergrund öffentlich. 2018 wurde Beate Zschäpe zu lebenslanger Haft verurteilt.</p>
+    <p>Der NSU-Komplex gilt als einer der größten Skandale der Nachkriegszeit. Polizei und Verfassungsschutz ermittelten jahrelang in die falsche Richtung, vermuteten organisierte Kriminalität statt eines rassistischen Motivs, und mehrere Untersuchungsausschüsse deckten gravierende Behördenfehler auf. Für die Aufarbeitung bedeutete der NSU eine Zäsur: Seitdem wird rechte Gewalt deutlich ernster genommen.</p>
+    <div class="booknote">Zusammengefasst nach <b>Buch S. 271, M 2-Erläuterung</b> und der Aufgabenlösung <b>S. 272 (Recherche „2000–2006: NSU-Morde“)</b> mit der Liste der Opfer.</div>
+
+    <div class="figbox">
+      <!-- schaubild: rechtsextreme Straftaten 1990-2009 nach M2 -->
+      <svg viewBox="0 0 720 270" width="100%" role="img" aria-label="Säulendiagramm: Entwicklung rechtsextremer Straftaten und Gewalttaten 1990 bis 2009">
+        <text x="12" y="20" font-family="Helvetica Neue,Arial" font-size="13" font-weight="700" fill="#1a1714">Rechtsextreme Straftaten 1990–2009 · schematischer Trend (nach M 2)</text>
+        <line x1="46" y1="40" x2="46" y2="220" stroke="#4a443c" stroke-width="1.5"/>
+        <line x1="46" y1="220" x2="700" y2="220" stroke="#4a443c" stroke-width="1.5"/>
+        <text x="40" y="60" font-size="10" fill="#4a443c" text-anchor="end">20 000</text>
+        <text x="40" y="140" font-size="10" fill="#4a443c" text-anchor="end">10 000</text>
+        <g id="bars"></g>
+        <rect x="500" y="244" width="13" height="13" fill="#c98a5a"/>
+        <text x="519" y="255" font-size="11" fill="#4a443c">Straftaten insgesamt</text>
+        <rect x="640" y="244" width="13" height="13" fill="#9a2d2d"/>
+        <text x="659" y="255" font-size="11" fill="#4a443c">Gewalttaten</text>
+      </svg>
+      <figcaption><span class="matref" style="margin-bottom:6px;display:inline-block">Material M4 · Statistik (nach Buch S. 271, M 2)</span><br><b>Schematische Verlaufsdarstellung</b> nach der Beschreibung zu Buch S. 271, M 2 (Quelle: Verfassungsschutzberichte). Die Balken zeigen den <b>Trend</b> (zwei Wellen), nicht die amtlichen Jahreswerte. Die exakten Zahlen liest du im Original-Diagramm M 2 im Buch ab.</figcaption>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 3 · Material: M4 (Statistik) + Original M 2 im Buch</span>
+      <div class="q-meta"><span class="q-type schau">Schaubild-Analyse</span></div>
+      <p class="qtext">Beschreibe den Verlauf der rechtsextremen Straftaten (zwei Wellen) und erläutere einen historischen Grund für den starken Anstieg Anfang der 1990er-Jahre. Lies die <b>genauen Zahlen</b> im Original-Diagramm M 2 im Buch (S. 271) ab.
+        <span class="sub">Schritt 1: Verlauf beschreiben (Wellen, Spitzen). Schritt 2: einen Grund nennen und erklären.</span></p>
+      <textarea data-min="220" placeholder="Verlauf beschreiben (mit Werten aus dem Buch) + Grund erläutern…"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p>Der Verlauf zeigt zwei Anstiegswellen: einen starken Anstieg in den frühen 1990er-Jahren (Höhepunkt etwa 1992/93) und einen erneuten Anstieg in den 2000er-Jahren; die rechtsextremen Gewalttaten bilden dabei durchgehend einen Teil der Gesamtstraftaten. Zwischendurch (Mitte/Ende der 1990er) gehen die Zahlen etwas zurück, bleiben aber hoch. (Die genauen Jahreswerte stehen im Buch-Diagramm M 2.)</p>
+        <p><b>Grund für die erste Welle:</b> die gesellschaftliche Verunsicherung nach der Wiedervereinigung und die steigende Zuwanderung – u. a. infolge der Jugoslawienkriege –, die fremdenfeindliche Einstellungen verstärkte. Das zeigte sich in Pogromen wie Hoyerswerda (1991) und Rostock-Lichtenhagen (1992). <em>(vgl. Buch S. 271 oben &amp; M 4, S. 273)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Richtig</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+    
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          Eine Schaubild-Analyse hat zwei Teile: erst den <em>Verlauf beschreiben</em> (Wann steigt/fällt die Kurve?), dann einen <em>Grund erläutern</em>. Lies die genauen Zahlen im Buch ab. Operatoren erklärt die 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Vergleiche die beiden Wellen (frühe 1990er ↔ 2000er): Worin unterscheiden sich ihre <b>Ursachen</b>? Nenne zu jeder Welle einen eigenen Grund.</div>
+      </div>
+    </div>
+
+    <h3><span class="matref">Material M5–M6 · Ergänzung (nicht im Buch)</span><br>Eine neue Welle: Halle (2019) und Hanau (2020)</h3>
+    <p>Der Rechtsterrorismus endete nicht mit dem NSU. Am 9. Oktober 2019 versuchte ein Rechtsextremist am höchsten jüdischen Feiertag Jom Kippur, schwer bewaffnet in die <b>Synagoge in Halle</b> einzudringen, in der sich 51 Menschen befanden. Als ihm das nicht gelang, erschoss er vor dem Gebäude eine Passantin und kurz darauf einen Mann in einem Imbiss. Der Täter wurde zu lebenslanger Haft mit Sicherungsverwahrung verurteilt. Am 19. Februar 2020 ermordete ein Rechtsterrorist in <b>Hanau</b> innerhalb weniger Minuten neun Menschen mit Migrationsgeschichte, danach seine Mutter und sich selbst. Sechs weitere Menschen wurden verletzt.</p>
+    <p>Beide Taten zeigten dieselben Muster wie schon beim NSU: ein rassistisches bzw. antisemitisches Motiv, ein radikalisierter Einzeltäter mit Online-„Manifest“ und Behördenfehler, die später in Untersuchungsausschüssen aufgearbeitet wurden. Halle führte bundesweit zu besserem Schutz jüdischer Einrichtungen; nach Hanau brachte die Bundesregierung Ende 2020 ein Maßnahmenpaket gegen Rechtsextremismus und Rassismus auf den Weg.</p>
+    <div class="booknote">Halle und Hanau stehen <b>nicht</b> im Buchkapitel (das bis 2009 reicht) – sie sind die aktuelle Fortsetzung. Vertiefung über die unten verlinkten Materialien.</div>
+
+    <div class="figbox">
+      <span class="matref">Material M5 · Porträt (Opfer von Hanau)</span>
+      <p style="margin:10px 0 0;font-size:15px"><b>Ferhat Unvar (1996–2020)</b> wuchs als Kind kurdischer Eltern in Hanau auf, hatte gerade seine Ausbildung zum Heizungs- und Gasinstallateur abgeschlossen und wollte eine eigene Firma gründen. Er traf sich am Abend des 19. Februar 2020 mit Freunden, als der Täter den Kiosk an der Arena-Bar stürmte. Ferhat Unvar wurde 23 Jahre alt. Seine Mutter, Serpil Temiz Unvar, gründete später die <b>Bildungsinitiative Ferhat Unvar</b>, die junge Menschen über Rassismus aufklärt – nach dem Leitsatz, den ihr Sohn hinterließ: „Tot sind wir erst, wenn man uns vergisst.“</p>
+      <figcaption>Kurzporträt nach öffentlichen Berichten (Amadeu-Antonio-Stiftung, bpb). Lies <em>nicht</em> die ganzen Artikel – dieses Porträt reicht für die Aufgabe.</figcaption>
+    </div>
+
+    <div class="video" href="https://www.bpb.de/mediathek/video/558159/einzeltaeter-teil-2-halle/" target="_blank" rel="noopener" onclick="window.open(this.getAttribute('href'),'_blank');return false;">
+      <span class="play"></span>
+      <span><span class="vtitle">Doku-Auszug: „Einzeltäter – Teil 2: Halle“</span>
+      <span class="vmeta">bpb-Mediathek · ⏱ nur die ersten ca. 4 Min ansehen (Tat &amp; Ort)</span></span>
+    </div>
+    <div class="vprompt"><span class="vp-label">Arbeitsauftrag zum Video</span>
+      <b>Achte beim Schauen darauf:</b> Was war das <b>Ziel</b> des Täters in Halle, und warum wird die Tat <b>antisemitisch</b> genannt? Mit dieser Information kannst du Teil (3) der Zeitzeugen-Aufgabe unten beantworten.</div>
+    <div class="video" href="https://www.youtube.com/watch?v=jXf9d1xHO34" target="_blank" rel="noopener" onclick="window.open(this.getAttribute('href'),'_blank');return false;">
+      <span class="play"></span>
+      <span><span class="vtitle">Hanau – Rekonstruktion &amp; Aufarbeitung</span>
+      <span class="vmeta">YouTube · ⏱ Abschnitt 0:00–5:00 (Tatablauf &amp; Versagen) genügt</span></span>
+    </div>
+    <div class="vprompt"><span class="vp-label">Arbeitsauftrag zum Video</span>
+      <b>Halte fest:</b> Welche <b>Fehler der Behörden</b> werden im Zusammenhang mit Hanau genannt (z. B. Notruf, Waffenerlaubnis)? Diese Punkte brauchst du für die Beurteilungs-Aufgabe „Hat die BRD gelernt?“ in Station 4.</div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 4 · Material: M5 (Porträt) + M6a/M6b (Zeitzeugen) + Abschnitt Halle/Hanau</span>
+      <div class="q-meta"><span class="q-type zeit">Zeitzeugen-Arbeit · ausführlich</span></div>
+      <p class="qtext">Bearbeite alle drei Teile in einem zusammenhängenden Text:<br>
+        <b>(1)</b> Beschreibe kurz, wer Ferhat Unvar war und was sein Schicksal über die Opfer rechter Gewalt zeigt.<br>
+        <b>(2)</b> Arbeite aus den beiden Zeitzeugen-Stimmen die <b>gemeinsame Forderung</b> an Staat und Gesellschaft heraus.<br>
+        <b>(3)</b> Erläutere, was Halle (2019) und Hanau (2020) mit der NSU-Mordserie gemeinsam haben.</p>
+      <div class="quote">„Man hat aus uns Täter gemacht, statt uns als Opfer zu sehen. Erst Jahre später wurde das Motiv anerkannt. Was ich fordere, ist, dass die Geschichte der Migrationsgesellschaft endlich im Bildungssystem ankommt und Betroffene gehört werden.“<span class="who"><b>Material M6a</b> · sinngemäß angelehnt an Aussagen Überlebender rechter Anschläge (vgl. Buch S. 274, M 6, I. Arslan, Mölln)</span></div>
+      <div class="quote">„Nach Hanau gründete eine Mutter eine Bildungsinitiative im Namen ihres ermordeten Sohnes. Junge Menschen sollen über Rassismus aufgeklärt und sensibilisiert werden – damit so etwas nie wieder geschieht.“<span class="who"><b>Material M6b</b> · ergänzte Zeitzeugen-Stimme (Bildungsinitiative nach Hanau, 2020)</span></div>
+      <textarea data-min="450" placeholder="Zusammenhängender Text zu allen drei Teilen (1) Ferhat Unvar … (2) gemeinsame Forderung … (3) Gemeinsamkeiten mit dem NSU …"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p><b>(1) Ferhat Unvar:</b> Er wurde 1996 als Kind kurdischer Eltern in Hanau geboren, hatte gerade seine Ausbildung zum Installateur abgeschlossen und wollte eine eigene Firma gründen, als er am 19. Februar 2020 mit 23 Jahren ermordet wurde. Sein Fall zeigt, dass die Opfer rechter Gewalt mitten aus der Gesellschaft stammen – junge Menschen mit Plänen und Zukunft, die allein wegen ihrer (zugeschriebenen) Herkunft getötet wurden.</p>
+        <p><b>(2) Gemeinsame Forderung:</b> Beide fordern Anerkennung der Opferperspektive und präventive Bildungsarbeit – Betroffene sollen gehört statt verdächtigt werden, und die Auseinandersetzung mit Rassismus und der Migrationsgesellschaft soll fest im Bildungssystem verankert werden. Aufarbeitung bedeutet also nicht nur Strafverfolgung, sondern Erinnerung, Bildung und Solidarität.</p>
+        <p><b>(3) Gemeinsamkeiten mit dem NSU:</b> rassistisches bzw. antisemitisches Motiv; radikalisierte Täter; das anfängliche Verkennen oder späte Anerkennen der Taten; Behördenfehler, die später in Untersuchungsausschüssen aufgearbeitet wurden. Halle und Hanau zeigen, dass Rechtsterrorismus kein abgeschlossenes Kapitel der 1990er ist. <em>(vgl. Buch S. 274, M 6; Abschnitt Halle/Hanau)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Richtig</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe</span>
+          Gehe Teil für Teil vor. Zu (1): Schau ins Porträt oben – Alter, Beruf, Träume. Zu (2): Unterstreiche in beiden Zitaten, was <em>gefordert</em> wird (Stichworte: „gehört werden“, „Bildungssystem“, „aufklären“). Zu (3): Denk an Motiv, Täter, Reaktion der Behörden beim NSU – und vergleiche.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Schau das verlinkte Video „Einzeltäter – Halle“ (4 Min) und ergänze: Wie beschreiben Angehörige selbst, was sie sich von der Gesellschaft wünschen? Formuliere einen eigenen Satz, der erklärt, warum der Begriff „Einzeltäter“ in der öffentlichen Debatte umstritten ist.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 5 · Material: M3 (NSU-Text)</span>
+      <div class="q-meta"><span class="q-type mc">Multiple Choice</span></div>
+      <p class="qtext">Wann wurde der rechtsterroristische Hintergrund der NSU-Mordserie öffentlich bekannt?</p>
+      <div class="mc" data-correct="2">
+        <label class="opt">2000<span class="mark"></span></label>
+        <label class="opt">2007<span class="mark"></span></label>
+        <label class="opt">2011<span class="mark"></span></label>
+        <label class="opt">2018<span class="mark"></span></label>
+      </div>
+      <div class="reveal"><div class="rl">Erläuterung</div>
+        <p>Richtig ist <b>2011</b>: Nach dem Tod von Mundlos und Böhnhardt am 4. November 2011 und dem Bekennervideo wurde die Mordserie dem NSU zugeordnet. 2018 fiel lediglich das Gerichtsurteil (lebenslange Haft für Zschäpe).</p>
+      </div>
+    </div>
+  
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          Achte auf die Jahreszahl der <em>Aufdeckung</em>, nicht des Urteils. Der NSU flog auf, als zwei Täter tot aufgefunden wurden und ein Bekennervideo auftauchte. Operatoren-Tipps in der 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Erkläre in zwei Sätzen, warum die Aufdeckung erst 2011 – und nicht früher – gelang. Stichwort: falsche Ermittlungsrichtung der Behörden.</div>
+      </div>
+    </div>
+</section>
+
+<!-- ================= INTERNATIONAL / 9/11 ================= -->
+<section id="international">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">2</span><h2>Internationaler Terrorismus: der 11. September 2001</h2><span class="sec-done-badge">✓ erledigt</span></div>
+    <div class="lock-note"><span class="lock-ico">🔒</span><span>Diese Station ist noch gesperrt. Bearbeite zuerst <b>Station 1</b> vollständig – sobald alle Aufgaben dort bearbeitet sind, öffnet sich Station 2 automatisch.</span></div>
+    <p class="sec-sub">Wie 9/11 das globale Ausmaß der Bedrohung sichtbar machte – und Deutschland betraf.</p>
+
+    <p><span class="matref m-steel">Material M7 · Text (Buch S. 271, „Islamistischer Terror“)</span></p>
+    <p>Am 11. September 2001 entführten islamistische Terroristen vier Flugzeuge in den USA; zwei steuerten sie in die Türme des World Trade Centers in New York, eines ins Pentagon, ein viertes stürzte nach dem Widerstand der Passagiere ab. Insgesamt starben rund 2 996 Menschen, darunter elf Deutsche. Die Anschläge zeigten das globale Ausmaß islamistisch-terroristischer Bedrohung. In den Ermittlungen wurde bekannt, dass die Täter Teile ihrer Planung auch von Deutschland aus koordiniert hatten (Hamburger Terrorzelle).</p>
+
+    <h3>Eine neue Form der Bedrohung</h3>
+    <p>9/11 machte sichtbar, dass der internationale Terrorismus aus dem Verborgenen operiert: Die Täter verstecken sich, sind über Ländergrenzen vernetzt und schlagen überraschend zu. Mit klassischen militärischen Mitteln ist diese Bedrohung kaum zu fassen. Als bekannt wurde, dass viele Attentäter in Afghanistan ausgebildet und von der dortigen Taliban-Regierung gedeckt worden waren, beschloss der UN-Sicherheitsrat ein militärisches Eingreifen. Es begann der weltweite „Krieg gegen den Terror“ – mit weitreichenden Folgen bis heute, darunter dem ISAF-Einsatz der Bundeswehr in Afghanistan.</p>
+
+    <p><span class="matref m-steel">Material M7 · Text (Buch S. 271/272, Deutschland als Ziel)</span></p>
+    <p>Auch die Bundesrepublik war Ziel: 2006 scheiterten Anschläge auf Regionalzüge in Hamm und Koblenz (die „Kofferbomben“ zündeten nicht), 2007 wurde ein Sprengstoffanschlag der „Sauerland-Gruppe“ verhindert. Begründet wurde dies in Propagandavideos oft mit der deutschen Beteiligung am internationalen Kampf gegen den Terror nach 2001. Damit verschob sich die Bedrohung von einem rein „fernen“ Ereignis hin zu einer konkreten Gefahr im eigenen Land.</p>
+
+    <div class="quote">
+      „Als ich einen Zeugen befragte, brach im Hintergrund das erste Gebäude zusammen. Es war so laut, als wäre noch ein Flugzeug hineingeflogen – und in Sekunden waren wir alle in Rauch und Asche gehüllt und rannten nur noch um unser Leben.“
+      <span class="who">Sinngemäße Augenzeugin (Journalistin vor Ort, New York, 11.09.2001) — ergänzte Zeitzeugen-Stimme</span>
+    </div>
+
+    <div class="figbox">
+      <span class="matref">Material M8 · Karikatur (Freiheit nach 9/11)</span>
+      <svg viewBox="0 0 720 250" width="100%" role="img" aria-label="Karikatur-Nachzeichnung: Die Waage zwischen Sicherheit und Freiheit gerät nach dem 11. September aus dem Gleichgewicht">
+        <rect x="0" y="0" width="720" height="250" fill="#fbf9f4"/>
+        <line x1="360" y1="40" x2="360" y2="150" stroke="#2e3a44" stroke-width="6"/>
+        <polygon points="360,150 330,210 390,210" fill="#2e3a44"/>
+        <line x1="180" y1="70" x2="540" y2="55" stroke="#1a1714" stroke-width="3"/>
+        <!-- left pan: Sicherheit (heavy, low) -->
+        <line x1="200" y1="70" x2="200" y2="150" stroke="#4a443c" stroke-width="1.5"/>
+        <path d="M150 150 h100 l-15 35 h-70 z" fill="#9a2d2d" opacity="0.85"/>
+        <text x="200" y="173" font-family="Helvetica Neue,Arial" font-size="12" font-weight="800" fill="#fff" text-anchor="middle">SICHERHEIT</text>
+        <!-- right pan: Freiheit (light, high) -->
+        <line x1="520" y1="56" x2="520" y2="110" stroke="#4a443c" stroke-width="1.5"/>
+        <path d="M475 110 h90 l-13 30 h-64 z" fill="#c98a5a" opacity="0.6"/>
+        <text x="520" y="130" font-family="Helvetica Neue,Arial" font-size="11" font-weight="800" fill="#1a1714" text-anchor="middle">FREIHEIT</text>
+        <text x="360" y="235" font-family="Helvetica Neue,Arial" font-size="12" fill="#4a443c" text-anchor="middle">Nach 9/11: Das Gewicht verschiebt sich Richtung Sicherheit – die Freiheit hebt ab.</text>
+      </svg>
+      <figcaption>Eigene schematische Karikatur zur Debatte nach 9/11 (Bildidee „Waage Freiheit/Sicherheit“). Die Buch-Karikatur dazu ist Mester, M 11 (S. 276) – siehe Abschnitt 3.</figcaption>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 6 · Material: M8 (Karikatur Waage)</span>
+      <div class="q-meta"><span class="q-type kari">Karikatur-Analyse</span></div>
+      <p class="qtext">Deute die Waage-Karikatur: Was sagt sie über die Folgen von 9/11 für das Verhältnis von Freiheit und Sicherheit aus?</p>
+      <textarea data-min="220" placeholder="Symbol Waage deuten + Aussage…"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p>Die Waage symbolisiert das Gleichgewicht zwischen Freiheit und Sicherheit. Nach 9/11 senkt sich die Seite „Sicherheit“ tief nach unten, während „Freiheit“ nach oben „abhebt“ und an Gewicht verliert. Aussage: Aus Angst vor weiteren Anschlägen reagierten Staaten mit immer mehr Sicherheitsgesetzen und Überwachung – auf Kosten der bürgerlichen Freiheiten. Die Karikatur kritisiert, dass die Balance verloren geht und Grundrechte unter Druck geraten. <em>(Verbindung zu Buch S. 276, M 11)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Richtig</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+    </div>
+
+    <div class="video" href="https://www.youtube.com/watch?v=P232eySaRDs" target="_blank" rel="noopener" onclick="window.open(this.getAttribute('href'),'_blank');return false;">
+      <span class="play"></span>
+      <span><span class="vtitle">„9/11 – der Tag, der alles veränderte“ (auslandsjournal)</span>
+      <span class="vmeta">ZDF / YouTube · ⏱ Abschnitt 0:00–5:00 ansehen (Ablauf &amp; Folgen)</span></span>
+    </div>
+    <div class="vprompt"><span class="vp-label">Arbeitsauftrag zum Video</span>
+      <b>Notiere zwei Folgen</b> von 9/11, die im Video genannt werden (z. B. „Krieg gegen den Terror“, neue Sicherheitsgesetze). Damit kannst du die Freitext-Aufgabe „Zeitenwende“ unten und die Zeitleiste in Station 3 verknüpfen.
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          Drei Schritte: <em>beschreiben</em> (Was zeigt die Waage?), <em>deuten</em> (Wofür stehen die beiden Seiten?), <em>Aussage</em> (Was kritisiert der Zeichner?). Den Operator „deuten/analysieren“ erklärt die 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Übertrage das Bild auf heute: Nenne ein konkretes Sicherheitsgesetz nach 9/11 (siehe Station 3), das die „Freiheit“-Seite leichter gemacht hat.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 7 · Material: M7 (9/11-Text) + Video</span>
+      <div class="q-meta"><span class="q-type frei">Freitext</span></div>
+      <p class="qtext">Erkläre, warum 9/11 oft als <b>„Zeitenwende“</b> bezeichnet wird – und inwiefern die Anschläge auch Deutschland direkt betrafen.</p>
+      <textarea data-min="220" placeholder="Zeitenwende + Deutschland-Bezug…"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p><b>Zeitenwende:</b> 9/11 machte sichtbar, dass Terrorismus global, vernetzt und aus dem Verborgenen heraus operiert und sich mit militärischen Mitteln kaum bekämpfen lässt. Die Folge war der weltweite „Krieg gegen den Terror“, Auslandseinsätze (u. a. Afghanistan) und eine Welle neuer Sicherheitsgesetze. <b>Deutschland-Bezug:</b> Unter den Toten waren elf Deutsche; Teile der Anschlagsplanung liefen über die Hamburger Zelle; und Deutschland wurde dadurch selbst zur Zielscheibe (Sauerland-Gruppe 2007, Kofferbomben Hamm/Koblenz 2006). <em>(vgl. Buch S. 271 &amp; S. 272)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Richtig</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+    
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          „Erklären“ verlangt das <em>Warum</em>. Beantworte zwei Fragen: Warum war 9/11 eine Zeitenwende (neue Art der Bedrohung)? Und wodurch war Deutschland direkt betroffen? Operatoren in der 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Recherchiere den Begriff <b>„asymmetrische Kriegsführung“</b>. Erkläre in zwei Sätzen, warum Terrorismus mit klassischer Armee schwer zu bekämpfen ist.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 8 · Material: M7 (Deutschland als Ziel)</span>
+      <div class="q-meta"><span class="q-type mc">Multiple Choice</span></div>
+      <p class="qtext">Welche Gruppe plante 2007 einen verhinderten Sprengstoffanschlag in Deutschland?</p>
+      <div class="mc" data-correct="1">
+        <label class="opt">„Kalifatsstaat“ (Köln)<span class="mark"></span></label>
+        <label class="opt">„Sauerland-Gruppe“<span class="mark"></span></label>
+        <label class="opt">„Nationalsozialistischer Untergrund“<span class="mark"></span></label>
+        <label class="opt">„Freie Nationalisten“<span class="mark"></span></label>
+      </div>
+      <div class="reveal"><div class="rl">Erläuterung</div>
+        <p>Die <b>Sauerland-Gruppe</b> plante im Auftrag der „Islamischen Dschihad-Union“ Anschläge; sie wurde 2007 enttarnt. Der „Kalifatsstaat“ (Metin Kaplan) und der NSU gehören in andere Kontexte. <em>(vgl. Buch S. 271, Randspalte „Sauerland-Gruppe“)</em></p>
+      </div>
+    </div>
+  
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          Die Gruppe plante 2007 einen Sprengstoffanschlag in Deutschland und wurde nach einer Region benannt. Verwechsle sie nicht mit dem „Kalifatsstaat“ oder dem NSU. Operatoren-Tipps in der 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Erkläre in einem Satz, womit islamistische Gruppen Anschläge gegen Deutschland <b>begründeten</b> (Stichwort: deutsche Beteiligung am „Krieg gegen den Terror“).</div>
+      </div>
+    </div>
+</section>
+
+<!-- ================= GESETZE ================= -->
+<section id="gesetze">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">3</span><h2>Gesetzliche Regelungen: die wehrhafte Demokratie reagiert</h2><span class="sec-done-badge">✓ erledigt</span></div>
+    <div class="lock-note"><span class="lock-ico">🔒</span><span>Diese Station ist noch gesperrt. Bearbeite zuerst <b>Station 2</b> vollständig – sobald alle Aufgaben dort bearbeitet sind, öffnet sich Station 3 automatisch.</span></div>
+    <p class="sec-sub">Repression, Prävention – und das Spannungsfeld zwischen Freiheit und Sicherheit.</p>
+
+    <p><span class="matref m-steel">Material M9–M10 · Text &amp; Zeitleiste (Buch S. 272, 275 f.)</span></p>
+    <p>Der Staat reagierte mit einem Mix aus <b>repressiven</b> und <b>präventiven</b> Maßnahmen. Repressiv: Strafverfolgung, Überwachung verfassungsfeindlicher Personen und Verbote extremistischer Organisationen. Nach dem 11. September 2001 verabschiedete der Bundestag mehrere Anti-Terror-Gesetze (Sicherheitspakete I und II), die den Behörden erweiterte Befugnisse gaben. Präventiv: Förderung pädagogischer Arbeit, Aussteiger- und Deradikalisierungsprogramme sowie 2006 die erste Deutsche Islamkonferenz.</p>
+    <p>Diese Maßnahmen waren in Politik und Gesellschaft umstritten. Denn in einem demokratischen Rechtsstaat bedeutet jede Ausweitung der Sicherheit zugleich eine Einschränkung bürgerlicher Freiheiten. Genau dieses Spannungsverhältnis – Freiheit gegen Sicherheit – ist der Kern der „wehrhaften Demokratie“: Sie verteidigt sich aktiv gegen ihre Feinde, ohne dabei selbst ihre freiheitlichen Grundlagen zu verraten.</p>
+
+    <h3><span class="matref m-steel" style="margin-bottom:6px;display:inline-block">Material M10 · Zeitleiste</span><br>Zeitleiste der Sicherheitsgesetzgebung</h3>
+    <div class="timeline">
+      <div class="tl-item"><div class="timeline-year">1993</div><div class="tl-body steel"><b>Einschränkung des Asylrechts (Art. 16a GG)</b><p>Nach der Welle rechter Gewalt; höchst umstritten – Kritiker sahen darin ein Nachgeben gegenüber rechtem Druck.</p></div></div>
+      <div class="tl-item"><div class="timeline-year">2001</div><div class="tl-body"><b>Sicherheitspaket I</b><p>Vereinsverbote auch für Religions- und Weltanschauungsgemeinschaften möglich, wenn sie sich gegen die verfassungsmäßige Ordnung richten.</p></div></div>
+      <div class="tl-item"><div class="timeline-year">2002</div><div class="tl-body"><b>Sicherheitspaket II</b><p>Erweiterte Befugnisse, u. a. Datenzugriff bei Fluggesellschaften, Kreditinstituten, Telekommunikation.</p></div></div>
+      <div class="tl-item"><div class="timeline-year">2006</div><div class="tl-body steel"><b>Anti-Terror-Datei &amp; Vorratsdatenspeicherung</b><p>Datenaustausch zwischen Polizei und Diensten; Teile später vom Bundesverfassungsgericht (2010/2013) für verfassungswidrig erklärt.</p></div></div>
+      <div class="tl-item"><div class="timeline-year">2015</div><div class="tl-body"><b>Personalausweis-Entzug</b><p>Behörden können ausreisewilligen Islamisten den Personalausweis entziehen; überarbeitete Vorratsdatenspeicherung.</p></div></div>
+    </div>
+    <div class="booknote">Quelle der Zeitleiste: <b>Buch S. 275 f., M 9</b>. Beachte, wie oft das Bundesverfassungsgericht Gesetze begrenzt hat – das ist der Kern der Aufgabe unten.</div>
+
+    <h3>Woher kommt die „wehrhafte Demokratie“?</h3>
+    <div class="source">
+      <span class="src-tag">Material M9 · Darstellungstext (Hintergrund: wehrhafte Demokratie)</span>
+      <p>Die Idee der „wehrhaften“ oder „streitbaren Demokratie“ ist eine Lehre aus dem Scheitern der Weimarer Republik. 1933 nutzten die Nationalsozialisten die demokratischen Freiheiten und legalen Wege, um die Demokratie von innen heraus abzuschaffen. Weimar war eine „Demokratie ohne Demokraten“, die sich gegen ihre Feinde nicht verteidigte.</p>
+      <p>Das Grundgesetz von 1949 zog daraus die Konsequenz: Die Bundesrepublik soll eine Demokratie sein, die sich <b>aktiv gegen ihre Feinde wehren darf</b>. Dazu gehören Instrumente wie das Verbot verfassungsfeindlicher Parteien (Art. 21 GG), die Grundrechtsverwirkung (Art. 18 GG) und die „Ewigkeitsklausel“ (Art. 79 III GG), die den Kern der Verfassung unabänderbar macht. Der Verfassungsschutz beobachtet extremistische Bestrebungen. So soll sich „Weimar“ nicht wiederholen.</p>
+      <p>Zugleich gilt: Diese Wehrhaftigkeit hat Grenzen. Eine Demokratie, die im Kampf gegen ihre Feinde selbst die Grundrechte abschafft, würde genau das zerstören, was sie verteidigen will. Deshalb wacht das Bundesverfassungsgericht darüber, dass Sicherheitsmaßnahmen verhältnismäßig bleiben.</p>
+      <figcaption style="font-size:12.5px;color:var(--ink-soft);font-family:'Helvetica Neue',Arial;margin-top:4px">Eigener Darstellungstext (Hintergrund zum Begriff „wehrhafte Demokratie“; historischer Bezug Weimar 1933 → Grundgesetz 1949).</figcaption>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 9 · Material: M9 (Text „wehrhafte Demokratie“)</span>
+      <div class="q-meta"><span class="q-type frei">Freitext · Textarbeit</span></div>
+      <p class="qtext">Arbeite aus dem Text heraus, <b>warum</b> die Bundesrepublik eine „wehrhafte Demokratie“ wurde. Erkläre den historischen Bezug zur Weimarer Republik und nenne <b>zwei</b> konkrete Instrumente, mit denen sich die Demokratie schützen kann.</p>
+      <textarea data-min="300" placeholder="Historischer Grund (Weimar 1933) + Konsequenz im Grundgesetz + zwei Instrumente …"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p><b>Historischer Grund:</b> Die „wehrhafte Demokratie“ ist eine Lehre aus dem Scheitern der Weimarer Republik. 1933 konnten die Nationalsozialisten die demokratischen Freiheiten und legale Wege nutzen, um die Demokratie von innen abzuschaffen, weil Weimar sich gegen ihre Feinde nicht verteidigte („Demokratie ohne Demokraten“).</p>
+        <p><b>Konsequenz im Grundgesetz (1949):</b> Die Bundesrepublik soll sich aktiv gegen Verfassungsfeinde wehren dürfen, damit sich „Weimar“ nicht wiederholt.</p>
+        <p><b>Zwei Instrumente (zwei genügen):</b> Parteiverbot verfassungsfeindlicher Parteien (Art. 21 GG); Grundrechtsverwirkung (Art. 18 GG); Ewigkeitsklausel (Art. 79 III GG); Beobachtung durch den Verfassungsschutz. <b>Grenze:</b> Die Wehrhaftigkeit darf nicht selbst die Grundrechte zerstören – darüber wacht das Bundesverfassungsgericht. <em>(vgl. Text M 9 oben &amp; Buch S. 275 f.)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Richtig</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+    
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          Der Text nennt den historischen Grund (Weimar 1933) und mehrere Schutz-Instrumente (Art. 21, 18, 79 III GG, Verfassungsschutz). Wähle zwei davon. „Herausarbeiten/erklären“ erklärt die 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Beurteile kurz: Sollte eine Demokratie Parteien verbieten dürfen? Nenne ein Argument dafür und eines dagegen (Bezug: NPD-Verfahren).</div>
+      </div>
+    </div>
+
+    <h3><span class="matref" style="margin-bottom:6px;display:inline-block">Material M11 · Karikatur (Mester 2006, Buch S. 276)</span><br>Karikatur: Freiheit vs. Sicherheit</h3>
+    <div class="figbox">
+      <svg viewBox="0 0 720 230" width="100%" role="img" aria-label="Karikatur-Nachzeichnung: Demokratie balanciert auf einem Seil zwischen Freiheit und Sicherheit über dem Abgrund Terror">
+        <rect x="0" y="0" width="720" height="230" fill="#fbf9f4"/>
+        <line x1="120" y1="60" x2="120" y2="200" stroke="#2e3a44" stroke-width="10"/>
+        <line x1="600" y1="60" x2="600" y2="200" stroke="#2e3a44" stroke-width="10"/>
+        <text x="120" y="48" font-family="Helvetica Neue,Arial" font-size="14" font-weight="800" fill="#2e3a44" text-anchor="middle">FREIHEIT</text>
+        <text x="600" y="48" font-family="Helvetica Neue,Arial" font-size="14" font-weight="800" fill="#2e3a44" text-anchor="middle">SICHERHEIT</text>
+        <line x1="120" y1="92" x2="600" y2="92" stroke="#1a1714" stroke-width="3"/>
+        <path d="M120 200 Q360 250 600 200 L600 230 L120 230 Z" fill="#efe3e1"/>
+        <text x="360" y="220" font-family="Helvetica Neue,Arial" font-size="15" letter-spacing="5" font-weight="800" fill="#9a2d2d" text-anchor="middle">T E R R O R</text>
+        <line x1="320" y1="92" x2="400" y2="92" stroke="#9a2d2d" stroke-width="3"/>
+        <circle cx="360" cy="72" r="9" fill="#1a1714"/>
+        <line x1="360" y1="81" x2="360" y2="92" stroke="#1a1714" stroke-width="4"/>
+        <text x="360" y="62" font-family="Helvetica Neue,Arial" font-size="10" font-weight="700" fill="#1a1714" text-anchor="middle">DEMOKRATIE</text>
+      </svg>
+      <figcaption>Nachzeichnung der Bildidee nach <b>Gerhard Mester, 2006 (Buch S. 276, M 11)</b>. Die Original-Karikatur findest du im Buch auf S. 276.</figcaption>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 10 · Material: M11 (Karikatur Mester)</span>
+      <div class="q-meta"><span class="q-type kari">Karikatur-Analyse</span></div>
+      <p class="qtext">Analysiere die Karikatur in drei Schritten: <b>(1)</b> Beschreibung, <b>(2)</b> Deutung der Symbole, <b>(3)</b> Aussage des Karikaturisten zur „wehrhaften Demokratie“.</p>
+      <textarea data-min="220" placeholder="1. Beschreibung … 2. Symbole … 3. Aussage …"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p><b>1. Beschreibung:</b> Eine Figur, die die Demokratie verkörpert (an den „deutschen Michel“ erinnernd), balanciert auf einem Seil. Das Seil ist zwischen zwei Bäumen mit den Aufschriften „Freiheit“ und „Sicherheit“ gespannt; darunter klafft ein Abgrund mit der Aufschrift „Terror“.</p>
+        <p><b>2. Symbole:</b> Das Seil = der schmale Grat, auf dem sich der Staat bewegt. Die beiden Bäume = die konkurrierenden Werte. Der Abgrund „Terror“ = die Gefahr, wenn die Balance misslingt.</p>
+        <p><b>3. Aussage:</b> Freiheit und Sicherheit stehen in einem Spannungsverhältnis. Zu viel Sicherheit beschneidet die Freiheit, zu wenig öffnet dem Terror Raum. Die wehrhafte Demokratie muss dieses Gleichgewicht immer wieder neu justieren, um nicht in den „Abgrund des Terrors“ zu stürzen. <em>(vgl. Buch S. 276, M 11)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Richtig</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe</span>
+          Nutze die drei Schritte jeder Karikatur-Analyse: Erst <em>beschreiben</em> (Was sehe ich? Figur, Seil, Bäume, Abgrund, Beschriftungen). Dann <em>deuten</em> (Wofür steht jedes Element?). Zuletzt <em>die Aussage</em> formulieren (Was will der Zeichner uns sagen?). Die Operatoren-Hilfe unten rechts erklärt „analysieren“.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Vergleiche diese Karikatur mit der „Waage“-Karikatur aus Abschnitt 2 (9/11). Beide zeigen das Verhältnis Freiheit/Sicherheit – aber mit unterschiedlichen Bildern. Welches Bild findest du treffender und warum? Begründe in zwei bis drei Sätzen.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 11 · Material: M10 (Zeitleiste)</span>
+      <div class="q-meta"><span class="q-type mc">Multiple Choice</span></div>
+      <p class="qtext">Welche Institution hat mehrfach Anti-Terror-Gesetze (z. B. Vorratsdatenspeicherung) eingeschränkt oder gekippt?</p>
+      <div class="mc" data-correct="2">
+        <label class="opt">Der Bundestag<span class="mark"></span></label>
+        <label class="opt">Der Verfassungsschutz<span class="mark"></span></label>
+        <label class="opt">Das Bundesverfassungsgericht<span class="mark"></span></label>
+        <label class="opt">Die Deutsche Islamkonferenz<span class="mark"></span></label>
+      </div>
+      <div class="reveal"><div class="rl">Erläuterung</div>
+        <p>Das <b>Bundesverfassungsgericht</b> erklärte 2010 die Vorratsdatenspeicherung und 2013 Teile der Anti-Terror-Datei für verfassungswidrig. Das zeigt die rechtsstaatliche Grenze repressiver Sicherheitspolitik. <em>(vgl. Buch S. 275 f., M 9)</em></p>
+      </div>
+    
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          Welche Institution <em>prüft Gesetze auf ihre Verfassungsmäßigkeit</em>? Nicht der Gesetzgeber selbst, sondern ein Gericht. Operatoren in der 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Nenne ein konkretes Gesetz, das dieses Gericht (teilweise) gekippt hat, und das Jahr (siehe Zeitleiste).</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 12 · Material: M9 + M10 (Text &amp; Zeitleiste)</span>
+      <div class="q-meta"><span class="q-type frei">Freitext · Begründen</span></div>
+      <p class="qtext">Begründe, warum es kein Widerspruch ist, dass derselbe Staat einerseits immer neue Sicherheitsgesetze erlässt und andererseits das Bundesverfassungsgericht Teile davon wieder kippt. Was sagt das über die „wehrhafte Demokratie“ aus?</p>
+      <textarea data-min="240" placeholder="Mehrere Sätze: Rolle der Gesetze, Rolle des Gerichts, was beides zusammen bedeutet…"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p>Beides gehört zusammen und ist kein Widerspruch, sondern Ausdruck der <b>Gewaltenteilung</b>. Der Gesetzgeber (Bundestag/Regierung) reagiert auf Bedrohungen mit Sicherheitsgesetzen – das ist die „wehrhafte“ Seite: Die Demokratie verteidigt sich aktiv. Das Bundesverfassungsgericht prüft diese Gesetze aber daraufhin, ob sie die Grundrechte verletzen, und kippt sie notfalls (z. B. Vorratsdatenspeicherung 2010). Das ist die rechtsstaatliche Selbstkontrolle: Sicherheit darf nicht grenzenlos auf Kosten der Freiheit gehen. Gerade dass der Staat sich selbst Grenzen setzt, unterscheidet die wehrhafte <em>Demokratie</em> von einem autoritären Überwachungsstaat. Die Balance Freiheit/Sicherheit wird so immer wieder neu justiert. <em>(vgl. Buch S. 275 f., M 9 &amp; M 11)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Überzeugend</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+    
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          „Begründen“ heißt: mit Argumenten stützen. Frag dich: Welche Rolle hat der Gesetzgeber, welche das Gericht? Warum ist beides zusammen ein Zeichen von Gewaltenteilung statt Widerspruch? Operatoren in der 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Verknüpfe mit Station 3-Text: Wie hängt diese Selbstkontrolle mit der Lehre aus <b>Weimar</b> zusammen? Ein bis zwei Sätze.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 13 · Material: M12 (Hasselbach-Zitat)</span>
+      <div class="q-meta"><span class="q-type frei">Freitext · Beurteilung</span></div>
+      <p class="qtext">Beurteile: Sind <b>Verbote</b> extremistischer Organisationen (z. B. das gescheiterte NPD-Verbot) ein wirksames Mittel? Nenne je ein Argument dafür und dagegen.</p>
+      <div class="quote">Ein Aussteiger argumentierte sinngemäß: Verbote könnten die Szene erst recht zusammenschweißen und in die Illegalität drängen – dort entstehe womöglich mehr Gewalt, weil sich Leute für den illegalen Weg entschieden.<span class="who"><b>Material M12</b> · sinngemäß nach dem Interview mit Ingo Hasselbach (EXIT), 2001 — Buch S. 276, M 10</span></div>
+      <textarea data-min="220" placeholder="Pro + Contra abwägen, eigenes Urteil…"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont (Argumente – Urteil offen)</div>
+        <p><b>Dafür:</b> Verbote entziehen extremistischen Gruppen Strukturen, Geld und öffentliche Bühne; der Staat setzt ein klares Signal der Wehrhaftigkeit; Symbole und Publikationen werden untersagt.</p>
+        <p><b>Dagegen:</b> Verbote können die Szene in den Untergrund verlagern und radikalisieren (Hasselbach, M 10); sie sind oft bloße „Symbolpolitik“; Verbotsverfahren können – wie beim NPD-Verfahren – an Formfehlern (V-Leute-Problem) scheitern.</p>
+        <p><b>Urteil:</b> Vertretbar ist die Position, dass Verbote allein nicht genügen und durch Prävention (Bildung, Aussteigerprogramme wie EXIT) ergänzt werden müssen. <em>(vgl. Buch S. 272 Aufgabe 3a &amp; S. 276, M 10)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Überzeugend</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+    </div>
+  
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          Eine Beurteilung braucht <em>zwei Seiten</em> und ein Urteil. Sammle ein Pro-Argument (Was bringt ein Verbot?) und ein Contra-Argument (Hasselbach!). Schließe mit deiner Meinung. Operator „beurteilen“ in der 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Vergleiche zwei Strategien: Verbot (Repression) vs. Aussteigerprogramm EXIT (Prävention). Welche hältst du für wirksamer und warum?</div>
+      </div>
+    </div>
+</section>
+
+<!-- ================= HEUTE ================= -->
+<section id="heute">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">4</span><h2>Heutige Entwicklungen &amp; Aufarbeitung</h2><span class="sec-done-badge">✓ erledigt</span></div>
+    <div class="lock-note"><span class="lock-ico">🔒</span><span>Diese Station ist noch gesperrt. Bearbeite zuerst <b>Station 3</b> vollständig – sobald alle Aufgaben dort bearbeitet sind, öffnet sich Station 4 automatisch.</span></div>
+    <p class="sec-sub">Warum die Gefahr nicht Geschichte ist – und was Aufarbeitung heute bedeutet.</p>
+
+    <p><span class="matref m-steel">Material M13 · Zahlen (Buch S. 272/273)</span></p>
+    <p>Nach einem Rückgang in den 2000er-Jahren hat der Rechtsextremismus in den letzten Jahren wieder deutlich an Dynamik gewonnen. 2022 lag das rechtsextremistische Personenpotenzial bei rund 38 800 Personen, davon etwa 14 000 als gewaltorientiert eingestuft; registriert wurden knapp 21 000 rechtsextreme Straftaten, darunter über 1 000 Gewalttaten. Vorläufige Zahlen für 2023 zeigen einen weiteren Anstieg, besonders bei antisemitischen Straftaten. Die aktuellen Werte übertreffen teils sogar die der 1990er-Jahre.</p>
+
+    <p><span class="matref m-steel">Material M13 · Text (Buch S. 275, M 8)</span></p>
+    <p>Beim islamistischen Terrorismus verschob sich die Bedrohung: Laut Verfassungsschutzbericht 2022 geht sie heute vor allem von <b>dschihadistisch motivierten Einzeltätern</b> aus, die mit einfach beschaffbaren Tatmitteln „weiche“ Ziele angreifen. Oft bleibt unklar, ob die Tat aus islamistischer Motivation oder im Zusammenhang mit psychischer Erkrankung erfolgt.</p>
+
+    <h3>Aufarbeitung: Erinnern als Auftrag</h3>
+    <p>Aufarbeitung heißt mehr als Strafverfolgung. Sie umfasst das Erinnern an die Opfer, die Anerkennung der Betroffenen, zivilgesellschaftliches Engagement (Lichterketten, Initiativen) und Bildungsarbeit. Nach Hanau und Halle entstanden Gedenkorte und Bildungsinitiativen; Angehörige kämpfen bis heute um lückenlose Aufklärung und gegen das Vergessen. Der Leitsatz „Tot sind wir erst, wenn man uns vergisst“ ist zum Motto dieser Erinnerungsarbeit geworden.</p>
+
+    <div class="video" href="https://www.zeit.de/gesellschaft/zeitgeschehen/2018-09/todesopfer-rechte-gewalt-karte-portraet" target="_blank" rel="noopener" onclick="window.open(this.getAttribute('href'),'_blank');return false;">
+      <span class="play"></span>
+      <span><span class="vtitle">Interaktiv: Todesopfer rechter Gewalt – Karte &amp; Porträts</span>
+      <span class="vmeta">ZEIT ONLINE · ⏱ ca. 3 Min · 1–2 Porträts anklicken genügt</span></span>
+    </div>
+    <div class="vprompt"><span class="vp-label">Arbeitsauftrag zur interaktiven Karte</span>
+      <b>Wähle ein Porträt aus</b> und schreibe einen Satz dazu: Wer war diese Person, und was sagt ihr Schicksal über das Ausmaß rechter Gewalt in Deutschland? Das passt direkt zur Aufgabe „Streit ums Gedenken“ unten.</div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 14 · Material: M13 (Zahlen) + Abschnitt 1</span>
+      <div class="q-meta"><span class="q-type frei">Freitext · Transfer</span></div>
+      <p class="qtext">Erkläre mit den aktuellen Zahlen, warum die Aussage „Rechtsextremismus ist ein Problem der 1990er-Jahre“ <b>falsch</b> ist.</p>
+      <textarea data-min="220" placeholder="Mit Zahlen begründen…"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p>Die Zahlen widerlegen die Aussage: 2022 wurden knapp 21 000 rechtsextreme Straftaten registriert (über 1 000 Gewalttaten), das Personenpotenzial lag bei rund 38 800, davon ca. 14 000 gewaltorientiert. 2023 stieg vor allem der Antisemitismus stark an. Diese Werte erreichen oder übertreffen das Niveau der 1990er-Jahre. Hinzu kommen die Anschläge von Halle (2019) und Hanau (2020) als jüngste rechtsterroristische Taten. Der Rechtsextremismus ist also <em>kein abgeschlossenes Kapitel</em>, sondern eine aktuelle Bedrohung. <em>(vgl. Buch S. 272 f.)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Richtig</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+    
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          „Transfer“ heißt: Wissen auf eine neue Aussage anwenden. Nimm die aktuellen Zahlen (2022/2023) als Beleg gegen die Behauptung. Operatoren in der 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Vergleiche die Zahlen von 2022/2023 mit den 1990ern: Was ist heute <b>anders</b> an der Bedrohung (Stichwort: Antisemitismus, Einzeltäter)?</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 15 · Material: M13 (Text, Buch M 8)</span>
+      <div class="q-meta"><span class="q-type mc">Multiple Choice</span></div>
+      <p class="qtext">Von wem geht laut Verfassungsschutzbericht 2022 die islamistische Bedrohung heute vor allem aus?</p>
+      <div class="mc" data-correct="1">
+        <label class="opt">Von großen, straff geführten Terrororganisationen<span class="mark"></span></label>
+        <label class="opt">Von dschihadistisch motivierten Einzeltätern<span class="mark"></span></label>
+        <label class="opt">Von staatlich gelenkten Geheimdiensten<span class="mark"></span></label>
+        <label class="opt">Von der „Sauerland-Gruppe“<span class="mark"></span></label>
+      </div>
+      <div class="reveal"><div class="rl">Erläuterung</div>
+        <p>Die Bedrohung wird heute vor allem durch <b>dschihadistisch motivierte Einzeltäter</b> mit einfach beschaffbaren Tatmitteln gegen „weiche“ Ziele aufrechterhalten. <em>(vgl. Buch S. 275, M 8)</em></p>
+      </div>
+    
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          Achte im Text darauf, ob die Bedrohung von <em>großen Organisationen</em> oder von <em>Einzelnen</em> ausgeht. Operatoren-Tipps in der 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Erkläre in zwei Sätzen, warum Einzeltäter für Sicherheitsbehörden <b>schwerer zu erkennen</b> sind als große Organisationen.</div>
+      </div>
+    </div>
+
+    <h3><span class="matref">Material M14 · Quelle (Streit ums Gedenken, Hanau)</span><br>Wohin gehört die Erinnerung?</h3>
+    <p>Nach dem Anschlag in Hanau entstand ein Streit über das Gedenken. Wenige Monate nach der Tat schlug ein Lokalpolitiker vor, Hanau solle „zur Normalität zurückkehren“ und die Gedenktafeln mit den Namen der Ermordeten aus der Innenstadt entfernen – etwa auf den Friedhof verlegen. Die Angehörigen widersprachen entschieden.</p>
+    <div class="quote">
+      „Erinnerung gehört nicht auf den Friedhof, sondern ins Zentrum der Stadt. Erinnern ist mehr als Trauerbewältigung – es ist eine Mahnung. Tot sind wir erst, wenn man uns vergisst.“
+      <span class="who">Sinngemäß nach Aussagen von Angehörigen der Hanau-Opfer (Initiative 19. Februar / Bildungsinitiative Ferhat Unvar), 2020/21 — ergänzte Quelle, nicht im Buch</span>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 16 · Material: M14 (Streit ums Gedenken)</span>
+      <div class="q-meta"><span class="q-type frei">Freitext · Begründen</span></div>
+      <p class="qtext">Begründe, warum es den Angehörigen so wichtig ist, dass das Gedenken <b>im Zentrum der Stadt</b> bleibt und nicht auf den Friedhof verlegt wird. Beziehe dich auf den Unterschied zwischen privater Trauer und öffentlicher Mahnung.</p>
+      <textarea data-min="240" placeholder="Mehrere Sätze: Warum öffentliches Gedenken? Was würde die Verlegung bedeuten?…"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont</div>
+        <p>Ein Friedhof ist ein Ort privater, stiller Trauer. Die Angehörigen wollen aber mehr: Das Gedenken soll im öffentlichen Raum sichtbar bleiben, weil es eine <b>politische Mahnung</b> ist. Es soll die Gesellschaft täglich daran erinnern, dass die Tat rassistisch motiviert war und dass rechte Gewalt ein Problem der Mitte der Gesellschaft ist, nicht ein Randphänomen. Eine Verlegung an den Stadtrand würde die Tat unsichtbar machen, sie „normalisieren“ und letztlich verdrängen. Der Leitsatz „Tot sind wir erst, wenn man uns vergisst“ bringt das auf den Punkt: Erinnerung ist Teil der Aufarbeitung und ein Schutz gegen Wiederholung. Aufarbeitung bedeutet hier also nicht nur Strafverfolgung, sondern aktives, öffentliches Erinnern und die Anerkennung der Opferperspektive.</p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Überzeugend</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+    
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
+          „Begründen“ heißt Argumente liefern. Frag dich: Was leistet ein Gedenken im Stadtzentrum, was ein Friedhof nicht kann? Denk an „Mahnung“ vs. „private Trauer“. Operator in der 📘 Operatoren-Hilfe.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
+          Übertrage: Kennst du einen Gedenkort in deiner Region/Stadt? Erkläre, welche Botschaft er an die Gesellschaft sendet.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="task-ref">Aufgabe 17 · Material: alle (M1–M14, gesamtes Modul)</span>
+      <div class="q-meta"><span class="q-type frei">Freitext · Beurteilen</span></div>
+      <p class="qtext">Beurteile: Hat die Bundesrepublik aus den Fehlern der 1990er-Jahre und des NSU für den Umgang mit rechtem Terror gelernt? Wäge Argumente ab und komm zu einem begründeten Urteil.
+        <span class="sub">Nutze: Behördenversagen damals ↔ heutige Maßnahmen, aber auch Halle/Hanau und steigende Zahlen.</span></p>
+      <textarea data-min="280" placeholder="Pro und Contra abwägen, dann ein eigenes, begründetes Urteil…"></textarea>
+      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
+      <button class="btn" disabled>Lösung aufdecken</button>
+      <div class="reveal"><div class="rl">Erwartungshorizont (Urteil offen, Argumente erwartet)</div>
+        <p><b>Dafür, dass gelernt wurde:</b> Nach dem NSU wird rechte Gewalt deutlich ernster genommen; es gibt Untersuchungsausschüsse, Deradikalisierungs- und Aussteigerprogramme (EXIT), nach Hanau ein Maßnahmenpaket mit 89 Punkten, besseren Schutz jüdischer Einrichtungen nach Halle und eine stärkere Anerkennung der Opferperspektive.</p>
+        <p><b>Dagegen:</b> Halle (2019) und Hanau (2020) zeigen, dass Einzeltäter weiter unentdeckt radikalisieren; die Zahlen rechtsextremer Straftaten steigen wieder und übertreffen teils die 1990er; bei Hanau gab es erneut Behördenfehler (überlasteter Notruf, Waffenerlaubnis trotz Auffälligkeit). Auch die Anerkennung als rassistische Taten kam oft spät.</p>
+        <p><b>Mögliches Urteil:</b> Vertretbar ist, dass <em>teilweise</em> gelernt wurde – die Sensibilität und die Strukturen sind besser, aber strukturelle Probleme (Behördenfehler, Unterschätzung von Einzeltätern, gesellschaftlicher Rassismus) bestehen fort. Ein klares „Ja“ oder „Nein“ wäre zu einfach. <em>(Bezug: gesamtes Modul, v. a. NSU, Halle/Hanau, Zahlen S. 272 f.)</em></p>
+        <div class="self-check"><span>Selbsteinschätzung:</span>
+          <button data-sc="1">Überzeugend</button><button data-sc="0">Nochmal ansehen</button></div>
+      </div>
+      <div class="diff">
+        <div class="diff-row">
+          <button class="diff-btn help">🛟 Hilfe / Tipp</button>
+          <button class="diff-btn ext">🚀 Erweiterung</button>
+        </div>
+        <div class="diff-body help-body"><span class="diff-label h">Hilfe</span>
+          Eine Beurteilung braucht zwei Seiten und ein Urteil. Sammle erst Argumente „dafür, dass gelernt wurde“ (z. B. Maßnahmen nach Hanau), dann „dagegen“ (z. B. Halle/Hanau selbst, steigende Zahlen). Schließe mit einem eigenen Satz: „Insgesamt urteile ich, dass …“. Die Operatoren-Hilfe erklärt „beurteilen“.</div>
+        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe – Leitfrage</span>
+          Beantworte zum Abschluss die <b>Leitfrage der Station</b>: „Aus den 1990ern gelernt? Wie verteidigt sich die Bundesrepublik gegen Extremismus und Terror – und wo liegen die Grenzen?“ Formuliere eine eigene These in drei bis vier Sätzen und stütze sie mit zwei Beispielen aus dem Modul.</div>
+      </div>
+    </div>
+<section id="quiz">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">✓</span><h2>Abschlussquiz – alle Module</h2><span class="sec-done-badge">✓ erledigt</span></div>
+    <div class="lock-note"><span class="lock-ico">🔒</span><span>Diese Station ist noch gesperrt. Bearbeite zuerst <b>Station 4</b> vollständig – sobald alle Aufgaben dort bearbeitet sind, öffnet sich das Abschlussquiz automatisch.</span></div>
+    <p class="sec-sub">Acht Fragen quer durch das Modul. Antworte ehrlich aus dem Kopf – am Ende siehst du dein Ergebnis.</p>
+    <div id="quizBox"></div>
+    <div class="quiz-result" id="quizResult">
+      <div class="qr-big" id="qrScore">0 / 8</div>
+      <p id="qrText"></p>
+      <button class="btn ghost" id="quizRetry" style="margin-top:12px">Quiz wiederholen</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ZUSAMMENFASSUNG ================= -->
+<section id="zusammenfassung">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">★</span><h2>Bilanz &amp; Zusammenfassung</h2></div>
+    <p class="sec-sub">Dein Ergebnis, die Kernaussagen auf einen Blick und die Downloads.</p>
+
+    <div class="score-panel">
+      <div class="score-big" id="scoreBig">0 / 0</div>
+      <p id="scoreLine">Bearbeite die Aufgaben – hier erscheint deine Selbstkontroll-Bilanz.</p>
+      <p style="font-size:12.5px;margin-top:10px">Aufgedeckte Lösungen: <b id="scoreReveal">0</b></p>
+    </div>
+
+    <h3 style="color:#fff;margin-top:6px">Die fünf Kernaussagen</h3>
+    <div class="sumcard"><h3>1 · Rechtsterrorismus zieht sich durch</h3><p>Von Rostock-Lichtenhagen (1992) über die NSU-Mordserie (2000–2007) bis Halle (2019) und Hanau (2020): rechte Gewalt ist eine Konstante, kein abgeschlossenes Kapitel der 1990er.</p></div>
+    <div class="sumcard"><h3>2 · 9/11 als globale Zeitenwende</h3><p>Der 11. September 2001 zeigte das weltweite Ausmaß islamistischen Terrors – mit direktem Deutschland-Bezug (Hamburger Zelle, Sauerland-Gruppe 2007).</p></div>
+    <div class="sumcard"><h3>3 · Wehrhafte Demokratie zwischen Freiheit und Sicherheit</h3><p>Der Staat reagiert repressiv (Verbote, Anti-Terror-Gesetze) und präventiv (Bildung, Aussteigerprogramme) – stets auf dem schmalen Grat der Karikatur von Mester.</p></div>
+    <div class="sumcard"><h3>4 · Das Bundesverfassungsgericht setzt Grenzen</h3><p>Vorratsdatenspeicherung (2010) und Anti-Terror-Datei (2013) wurden teils gekippt: Sicherheit darf die Grundrechte nicht aushebeln.</p></div>
+    <div class="sumcard"><h3>5 · Aufarbeitung heißt Erinnern</h3><p>Strafverfolgung allein genügt nicht. Anerkennung der Opfer, Gedenken und Bildungsarbeit sind zentral – das fordern Betroffene bis heute.</p></div>
+
+    <div class="dl-row">
+      <a class="dl-btn" id="dlPdf" href="#" download>📄 Lösungs-PDF herunterladen</a>
+      <a class="dl-btn alt" id="dlNotes" href="#" download>📝 Eigene Antworten exportieren (.txt)</a>
+      <button class="dl-btn alt" id="resetAll" type="button">🗑 Alles zurücksetzen</button>
+    </div>
+    <p style="font-size:12px;color:#aeb7bd;text-align:center;margin-top:14px">💾 Deine Antworten werden automatisch auf diesem Gerät gespeichert: Wenn du die Seite neu lädst oder schließt und später wieder öffnest, ist alles noch da. Zum Abgeben nutze den Export-Button. „Alles zurücksetzen“ löscht deine Eingaben (z. B. für den nächsten Schüler am selben Gerät).</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Lernstation „Extremismus &amp; Terrorismus als Bedrohung für die Demokratie“ · Quellenbasis: Geschichtsbuch Kap. 5.3, S. 270–276.
+    Darstellungstexte zusammengefasst; Originalquellen und Karikaturen bitte im Buch nachlesen (Seitenangaben jeweils genannt).
+    Videos extern (bpb, ZDF/YouTube, ZEIT ONLINE) – Inhalte der verlinkten Seiten liegen außerhalb der Verantwortung dieser Station.
+  </div>
+</footer>
+
+<script>window.STATION_MODE="student";</script>
+<script>
+/* ---------- vocabulary data ---------- */
+const VOCAB=[
+  ["Extremismus","Haltung / Ideologie","Politische Bestrebungen, die die freiheitlich-demokratische Grundordnung ablehnen und durch ein autoritäres System ersetzen wollen."],
+  ["Terrorismus","Methode","Gezielte schwere Gewalt oder ihre Androhung, um durch Angst und Schrecken politische Ziele durchzusetzen."],
+  ["Rechtsextremismus","Ideologie","Weltbild aus nationalistischen, rassistischen und antisemitischen Anschauungen; Ungleichwertigkeit von Menschen nach „Rasse“ oder Nation."],
+  ["Rechtsterrorismus","Gewaltform","Planmäßige rechtsextreme Gewalt zur Beseitigung der Demokratie nach Vorbild des Nationalsozialismus (z. B. NSU)."],
+  ["Islamismus","Ideologie","Politische, religiös begründete Form des Islam, die die eigene Auslegung für Staat und Gesellschaft verbindlich machen will."],
+  ["Wehrhafte Demokratie","Prinzip","Eine Demokratie, die sich aktiv gegen verfassungsfeindliche, extremistische Bestrebungen verteidigt."],
+  ["Asylkompromiss (Art. 16a)","Gesetz, 1993","Massive Einschränkung des Grundrechts auf Asyl nach der Welle rechter Gewalt – politisch hoch umstritten."],
+  ["Deradikalisierung","Prävention","Programme (z. B. EXIT), die Aussteigern den Weg aus der extremistischen Szene ermöglichen."],
+  ["NSU","Terrorgruppe","„Nationalsozialistischer Untergrund“: rechtsterroristische Zelle, 9 + 1 Morde 2000–2007, aufgedeckt 2011."],
+  ["Aufarbeitung","Auftrag","Strafverfolgung + Erinnern, Opferanerkennung und Bildungsarbeit zur gesellschaftlichen Auseinandersetzung mit Gewalt."]
+];
+const vg=document.getElementById('vocab');
+VOCAB.forEach(([t,h,d])=>{
+  const c=document.createElement('div');c.className='vcard';c.tabIndex=0;
+  c.innerHTML=`<div class="vcard-inner">
+    <div class="vface vfront"><span class="vterm">${t}</span><span class="vhint">${h} · tippen zum Aufdecken</span></div>
+    <div class="vface vback">${d}</div></div>`;
+  const flip=()=>c.classList.toggle('flip');
+  c.addEventListener('click',flip);
+  c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip();}});
+  vg.appendChild(c);
+});
+
+/* ---------- memory game (6 pairs, term ↔ short definition) ---------- */
+const MEM=[
+  ["Extremismus","Gegen die FDGO gerichtete Ideologie"],
+  ["Terrorismus","Gewalt-Methode, um Angst zu verbreiten"],
+  ["Rechtsterrorismus","Planmäßige rechte Gewalt (z. B. NSU)"],
+  ["Wehrhafte Demokratie","Verteidigt sich aktiv gegen Feinde"],
+  ["Deradikalisierung","Aussteigerprogramme wie EXIT"],
+  ["Aufarbeitung","Erinnern + Opfer anerkennen"]
+];
+const grid=document.getElementById('memGrid');
+let memCards=[],first=null,lock=false,tries=0,pairs=0;
+function buildMemory(){
+  grid.innerHTML='';first=null;lock=false;tries=0;pairs=0;
+  document.getElementById('memTries').textContent='0';
+  document.getElementById('memPairs').textContent='0';
+  document.getElementById('memDone').classList.remove('show');
+  let deck=[];
+  MEM.forEach((p,i)=>{
+    deck.push({pair:i,kind:'term',text:p[0]});
+    deck.push({pair:i,kind:'def',text:p[1]});
+  });
+  for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}
+  deck.forEach(d=>{
+    const card=document.createElement('div');card.className='mem-card';card.tabIndex=0;
+    card.innerHTML=`<div class="mem-inner">
+      <div class="mem-face mem-front">?</div>
+      <div class="mem-face mem-back ${d.kind==='term'?'term':''}">${d.text}</div></div>`;
+    const open=()=>{
+      if(lock||card.classList.contains('open')||card.classList.contains('matched'))return;
+      card.classList.add('open');
+      if(!first){first={card,pair:d.pair};return;}
+      tries++;document.getElementById('memTries').textContent=tries;
+      if(first.pair===d.pair){
+        card.classList.add('matched');first.card.classList.add('matched');
+        first=null;pairs++;document.getElementById('memPairs').textContent=pairs;
+        if(pairs===MEM.length)document.getElementById('memDone').classList.add('show');
+      }else{
+        lock=true;const a=first.card;
+        setTimeout(()=>{a.classList.remove('open');card.classList.remove('open');first=null;lock=false;},850);
+      }
+    };
+    card.addEventListener('click',open);
+    card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+    grid.appendChild(card);
+  });
+}
+document.getElementById('memReset').addEventListener('click',buildMemory);
+buildMemory();
+
+/* ---------- schaubild bars (M2 schematic) ---------- */
+const data=[[1990,1.5,.4],[1991,5.5,1.2],[1992,10,3.2],[1993,12.8,2.2],[1994,8,1.2],[1995,8.7,.9],[1996,9,.9],[1997,12.5,1],[1998,11.5,1],[1999,10.8,.8],[2000,16.5,1],[2001,15.5,1],[2002,12.5,1],[2003,11,.9],[2004,12.5,1],[2005,16,1],[2006,18.8,1.1],[2007,17.8,1],[2008,20.5,1.1],[2009,19.5,1]];
+const bars=document.getElementById('bars');
+if(bars){const x0=52,w=(700-52)/data.length,scale=160/22;
+  data.forEach((d,i)=>{
+    const x=x0+i*w, totH=d[1]*scale, gewH=d[2]*scale;
+    bars.insertAdjacentHTML('beforeend',
+      `<rect x="${x+1}" y="${220-totH}" width="${w-3}" height="${totH}" fill="#c98a5a"/>
+       <rect x="${x+1}" y="${220-gewH}" width="${w-3}" height="${gewH}" fill="#9a2d2d"/>`);
+    if(d[0]%3===0||d[0]===2009)bars.insertAdjacentHTML('beforeend',
+      `<text x="${x+w/2}" y="232" font-size="8.5" fill="#4a443c" text-anchor="middle">${d[0]}</text>`);
+  });
+}
+
+/* ---------- persistence (localStorage) ---------- */
+const STORE_KEY='extremismus_station_student_v1';
+/* MODE: 'student' = Stationen schalten nacheinander frei, Lösungen via Aufdecken.
+         'teacher' = alles offen, Lösungen sichtbar. Wird pro Datei gesetzt. */
+const MODE=(window.STATION_MODE||'student');
+let MC_RIGHT=0,MC_TOTAL=0,SELF_OK=0,SELF_TOTAL=0,REVEALED=0;
+let SAVED={};
+try{ SAVED=JSON.parse(localStorage.getItem(STORE_KEY))||{}; }catch(e){ SAVED={}; }
+function persist(){ try{ localStorage.setItem(STORE_KEY,JSON.stringify(SAVED)); if(window.__flagSaved)window.__flagSaved(); }catch(e){} }
+
+/* ---------- free-text gating ---------- */
+document.querySelectorAll('.task').forEach((task,ti)=>{
+  const ta=task.querySelector('textarea');
+  if(!ta)return;
+  const key='ft'+ti;
+  ta.dataset.k=key;
+  const min=+ta.dataset.min||80;
+  const btn=task.querySelector('.btn');
+  const cnt=task.querySelector('.cnt');
+  const bar=task.querySelector('.ta-bar i');
+  function refresh(){
+    const n=ta.value.trim().length;
+    cnt.textContent=n+' Zeichen';
+    if(bar)bar.style.width=Math.min(100,n/min*100)+'%';
+    const ok=n>=min;
+    if(!task.querySelector('.reveal').classList.contains('show')){
+      btn.disabled=!ok;
+      btn.textContent=ok?'Lösung aufdecken':`Schreibe ausführlicher – noch ${Math.max(0,min-n)} Zeichen…`;
+    }
+  }
+  // restore saved answer + reveal state
+  if(SAVED[key]){
+    if(SAVED[key].txt) ta.value=SAVED[key].txt;
+    if(SAVED[key].rev){
+      task.querySelector('.reveal').classList.add('show');
+      btn.disabled=true;btn.textContent='Lösung sichtbar ✓';REVEALED++;
+    }
+  }
+  refresh();
+  ta.addEventListener('input',()=>{
+    refresh();
+    SAVED[key]=SAVED[key]||{};SAVED[key].txt=ta.value;persist();
+  });
+  btn.addEventListener('click',()=>{
+    task.querySelector('.reveal').classList.add('show');
+    btn.disabled=true;btn.textContent='Lösung sichtbar ✓';
+    REVEALED++;updateScore();
+    SAVED[key]=SAVED[key]||{};SAVED[key].rev=true;SAVED[key].txt=ta.value;persist();
+  });
+});
+
+/* ---------- multiple choice ---------- */
+document.querySelectorAll('.mc').forEach((mc,mi)=>{
+  const correct=+mc.dataset.correct;
+  const opts=[...mc.querySelectorAll('.opt')];
+  const reveal=mc.parentElement.querySelector('.reveal');
+  const key='mc'+mi;
+  function lockIn(i,record){
+    mc.dataset.done='1';MC_TOTAL++;
+    opts.forEach((oo,j)=>{
+      oo.classList.add('locked');
+      if(j===correct){oo.classList.add('correct');oo.querySelector('.mark').textContent='✓';}
+      if(j===i&&i!==correct){oo.classList.add('wrong');oo.querySelector('.mark').textContent='✗';}
+    });
+    if(i===correct)MC_RIGHT++;
+    if(reveal)reveal.classList.add('show');
+    if(record){SAVED[key]=i;persist();}
+    updateScore();
+  }
+  if(SAVED[key]!==undefined){ lockIn(SAVED[key],false); }
+  opts.forEach((o,i)=>o.addEventListener('click',()=>{
+    if(mc.dataset.done)return;
+    lockIn(i,true);
+  }));
+});
+
+/* ---------- self-check buttons ---------- */
+document.querySelectorAll('.self-check').forEach((sc,si)=>{
+  const yes=sc.querySelector('[data-sc="1"]'),no=sc.querySelector('[data-sc="0"]');
+  const key='sc'+si;
+  function setYes(record){
+    if(sc.dataset.done==='y')return;
+    if(sc.dataset.done==='n'){SELF_OK++;} else {SELF_TOTAL++;SELF_OK++;}
+    sc.dataset.done='y';yes.classList.add('sel');no.classList.remove('selno');updateScore();
+    if(record){SAVED[key]='y';persist();}
+  }
+  function setNo(record){
+    if(sc.dataset.done==='n')return;
+    if(sc.dataset.done==='y'){SELF_OK--;} else {SELF_TOTAL++;}
+    sc.dataset.done='n';no.classList.add('selno');yes.classList.remove('sel');updateScore();
+    if(record){SAVED[key]='n';persist();}
+  }
+  if(SAVED[key]==='y')setYes(false);
+  else if(SAVED[key]==='n')setNo(false);
+  yes.addEventListener('click',()=>setYes(true));
+  no.addEventListener('click',()=>setNo(true));
+});
+
+/* ---------- scoring ---------- */
+function updateScore(){
+  const right=MC_RIGHT+SELF_OK, total=MC_TOTAL+SELF_TOTAL;
+  document.getElementById('scoreBig').textContent=right+' / '+total;
+  document.getElementById('scoreReveal').textContent=REVEALED;
+  const line=document.getElementById('scoreLine');
+  if(total===0){line.textContent='Bearbeite die Aufgaben – hier erscheint deine Selbstkontroll-Bilanz.';return;}
+  const pct=Math.round(right/total*100);
+  line.textContent=pct>=80?`Stark – ${pct}% richtig eingeschätzt. Prüfungsreif!`
+    :pct>=50?`Solide – ${pct}%. Schau dir die rot markierten Stellen nochmal an.`
+    :`${pct}% – wiederhole die Darstellungstexte und versuche die Aufgaben erneut.`;
+}
+
+/* ---------- progress bar ---------- */
+const prog=document.getElementById('progress');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+});
+
+/* ---------- export own answers ---------- */
+document.getElementById('dlNotes').addEventListener('click',e=>{
+  let out='Meine Antworten – Extremismus & Terrorismus\n'+'='.repeat(46)+'\n\n';
+  document.querySelectorAll('.task').forEach(t=>{
+    const q=t.querySelector('.qtext');const ta=t.querySelector('textarea');
+    if(q&&ta){out+='FRAGE: '+q.textContent.trim().replace(/\s+/g,' ')+'\n';
+      out+='ANTWORT: '+(ta.value.trim()||'(leer)')+'\n\n';}
+  });
+  out+='Selbstkontrolle: '+(MC_RIGHT+SELF_OK)+' / '+(MC_TOTAL+SELF_TOTAL)+'\n';
+  const blob=new Blob([out],{type:'text/plain'});
+  e.target.href=URL.createObjectURL(blob);
+  e.target.download='meine_antworten_extremismus.txt';
+});
+
+/* ---------- operator help ---------- */
+const OPS=[
+  ["nennen / benennen","I","Elemente, Begriffe oder Fakten ohne Erklärung aufzählen."],
+  ["beschreiben","I","Einen Sachverhalt oder ein Bild mit eigenen Worten genau und sachlich wiedergeben."],
+  ["darstellen","I–II","Einen Zusammenhang strukturiert und geordnet wiedergeben."],
+  ["erläutern","II","Einen Sachverhalt erklären und mit Beispielen oder Belegen veranschaulichen."],
+  ["erklären","II","Ursachen und Zusammenhänge nachvollziehbar machen (Warum?)."],
+  ["analysieren","II","Ein Material (Text, Bild, Statistik) in Bestandteile zerlegen und untersuchen."],
+  ["herausarbeiten","II","Aus einem Material zentrale Aussagen gezielt entnehmen und ordnen."],
+  ["begründen","II–III","Eine Aussage mit nachvollziehbaren Argumenten stützen (Warum ist das so?)."],
+  ["beurteilen","III","Argumente abwägen und zu einem begründeten, sachlichen Urteil kommen."],
+  ["bewerten","III","Wie beurteilen, aber zusätzlich mit eigenem Wertmaßstab Stellung nehmen."],
+  ["Stellung nehmen","III","Eine eigene, begründete Position zu einer Frage entwickeln."]
+];
+const opList=document.getElementById('opList');
+OPS.forEach(([n,afb,d])=>{
+  opList.insertAdjacentHTML('beforeend',
+    `<div class="op-item"><span class="op-name">${n}</span><span class="op-afb">AFB ${afb}</span><p class="op-def">${d}</p></div>`);
+});
+const opPanel=document.getElementById('opPanel'),opToggle=document.getElementById('opToggle');
+function opSet(open){opPanel.classList.toggle('show',open);opToggle.setAttribute('aria-expanded',open);}
+opToggle.addEventListener('click',()=>opSet(!opPanel.classList.contains('show')));
+document.getElementById('opClose').addEventListener('click',()=>opSet(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')opSet(false);});
+
+/* ---------- differentiation toggles ---------- */
+document.querySelectorAll('.diff').forEach(d=>{
+  const help=d.querySelector('.diff-btn.help'),ext=d.querySelector('.diff-btn.ext');
+  const hb=d.querySelector('.help-body'),eb=d.querySelector('.ext-body');
+  if(help&&hb)help.addEventListener('click',()=>{hb.classList.toggle('show');
+    help.textContent=hb.classList.contains('show')?'🛟 Hilfe ausblenden':'🛟 Hilfe / Tipp';});
+  if(ext&&eb)ext.addEventListener('click',()=>{eb.classList.toggle('show');
+    ext.textContent=eb.classList.contains('show')?'🚀 Erweiterung ausblenden':'🚀 Erweiterung';});
+});
+
+/* ---------- final quiz ---------- */
+const QUIZ=[
+  {q:"Was beschreibt der Begriff <b>Terrorismus</b> – im Unterschied zu Extremismus?",
+   a:["Eine politische Gesinnung gegen die Demokratie","Eine Methode: Gewalt zur Verbreitung von Angst","Eine Partei","Ein Gesetz"],c:1},
+  {q:"Welches Ereignis von 1992 gilt als Symbol für rechte Gewalt nach der Wiedervereinigung?",
+   a:["Anschlag in Halle","Rostock-Lichtenhagen","NSU-Prozess","Sauerland-Gruppe"],c:1},
+  {q:"Wie viele Menschen ermordete der <b>NSU</b> (Migranten + Polizistin) zwischen 2000 und 2007?",
+   a:["3","Neun plus eine Polizistin","20","Keine, nur Anschläge"],c:1},
+  {q:"Wann wurden die Anschläge von <b>Halle</b> und <b>Hanau</b> verübt?",
+   a:["1992 und 1993","2000 und 2007","2019 und 2020","2006 und 2011"],c:2},
+  {q:"Wodurch betraf der <b>11. September 2001</b> auch Deutschland direkt?",
+   a:["Gar nicht","Planung über die Hamburger Zelle, 11 deutsche Opfer","Anschlag in Berlin","Verbot der NPD"],c:1},
+  {q:"Welche Institution kippte mehrfach Anti-Terror-Gesetze (z. B. Vorratsdatenspeicherung)?",
+   a:["Der Bundestag","Das Bundesverfassungsgericht","Der Verfassungsschutz","Die EU"],c:1},
+  {q:"Was zeigt die Karikatur von Mester (M 11) zur <b>wehrhaften Demokratie</b>?",
+   a:["Freiheit und Sicherheit im Gleichgewicht – auf einem Seil über dem Abgrund Terror","Den Mauerfall","Die Treuhand","Die Agenda 2010"],c:0},
+  {q:"Von wem geht laut Verfassungsschutz die <b>islamistische</b> Bedrohung heute v. a. aus?",
+   a:["Großen Organisationen","Dschihadistischen Einzeltätern","Dem Staat","Der NPD"],c:1}
+];
+const quizBox=document.getElementById('quizBox');
+let quizDone=0,quizRight=0;
+function buildQuiz(fresh){
+  quizBox.innerHTML='';quizDone=0;quizRight=0;
+  document.getElementById('quizResult').classList.remove('show');
+  if(fresh){ SAVED.quiz={}; persist(); }
+  const qsaved=SAVED.quiz||{};
+  QUIZ.forEach((item,qi)=>{
+    const card=document.createElement('div');card.className='quiz-card';
+    card.innerHTML=`<div class="quiz-progress">Frage ${qi+1} / ${QUIZ.length}</div>
+      <p class="quiz-q">${item.q}</p>
+      <div class="mcq"></div>
+      <div class="reveal"><div class="rl">Auflösung</div><p class="qexp"></p></div>`;
+    const box=card.querySelector('.mcq');
+    function lock(oi,record){
+      if(card.dataset.done)return;card.dataset.done='1';quizDone++;
+      [...box.children].forEach((c,j)=>{
+        c.classList.add('locked');
+        if(j===item.c){c.classList.add('correct');c.querySelector('.mark').textContent='✓';}
+        if(j===oi&&oi!==item.c){c.classList.add('wrong');c.querySelector('.mark').textContent='✗';}
+      });
+      if(oi===item.c)quizRight++;
+      card.querySelector('.reveal').classList.add('show');
+      card.querySelector('.qexp').textContent='Richtig ist: '+item.a[item.c];
+      if(record){SAVED.quiz=SAVED.quiz||{};SAVED.quiz[qi]=oi;persist();}
+      if(quizDone===QUIZ.length)showQuizResult();
+    }
+    item.a.forEach((opt,oi)=>{
+      const l=document.createElement('label');l.className='opt';
+      l.innerHTML=`${opt}<span class="mark"></span>`;
+      l.addEventListener('click',()=>lock(oi,true));
+      box.appendChild(l);
+    });
+    quizBox.appendChild(card);
+    if(qsaved[qi]!==undefined) lock(qsaved[qi],false);
+  });
+}
+function showQuizResult(){
+  const r=document.getElementById('quizResult');r.classList.add('show');
+  document.getElementById('qrScore').textContent=quizRight+' / '+QUIZ.length;
+  const pct=quizRight/QUIZ.length;
+  document.getElementById('qrText').textContent=
+    pct>=0.875?'Prüfungsreif – du beherrschst das Modul.':
+    pct>=0.6?'Gut – schau dir die falschen Fragen im jeweiligen Abschnitt noch einmal an.':
+    'Wiederhole die Darstellungstexte und versuche das Quiz erneut.';
+}
+document.getElementById('quizRetry').addEventListener('click',()=>buildQuiz(true));
+buildQuiz(false);
+
+/* ---------- station locking engine ---------- */
+// Ordered lockable sections; each unlocks when the previous is fully worked through.
+const LOCK_ORDER=['deutschland','international','gesetze','heute','quiz'];
+
+function sectionComplete(sec){
+  // A station counts as done when every task is answered (free-text revealed OR mc answered)
+  // and, for the quiz, every quiz question is answered.
+  if(sec.id==='quiz'){
+    const total=document.querySelectorAll('#quizBox .quiz-card').length;
+    const done=document.querySelectorAll('#quizBox .quiz-card[data-done]').length;
+    return total>0 && done>=total;
+  }
+  const tasks=[...sec.querySelectorAll('.task')];
+  if(!tasks.length) return true;
+  return tasks.every(t=>{
+    const mc=t.querySelector('.mc');
+    if(mc) return mc.dataset.done==='1';
+    const ta=t.querySelector('textarea');
+    if(ta) return t.querySelector('.reveal').classList.contains('show');
+    return true;
+  });
+}
+
+function sectionProgress(sec){
+  if(sec.id==='quiz'){
+    const total=document.querySelectorAll('#quizBox .quiz-card').length||8;
+    const done=document.querySelectorAll('#quizBox .quiz-card[data-done]').length;
+    return [done,total];
+  }
+  const tasks=[...sec.querySelectorAll('.task')];
+  const done=tasks.filter(t=>{
+    const mc=t.querySelector('.mc');
+    if(mc) return mc.dataset.done==='1';
+    const ta=t.querySelector('textarea');
+    if(ta) return t.querySelector('.reveal').classList.contains('show');
+    return true;
+  }).length;
+  return [done,tasks.length];
+}
+
+function refreshLocks(){
+  if(MODE==='teacher') return; // teacher: nothing locked
+  // wortschatz is always open; the first lockable (deutschland) is always open too.
+  let prevDone=true; // Wortschatz/Start always "done enough" to open Station 1
+  LOCK_ORDER.forEach((id,idx)=>{
+    const sec=document.getElementById(id);
+    if(!sec) return;
+    const open = idx===0 ? true : prevDone;
+    sec.classList.toggle('locked', !open);
+    const done=sectionComplete(sec);
+    sec.classList.toggle('section-done', done && open);
+    // progress line under sec-head
+    let pl=sec.querySelector('.sec-progress');
+    if(open){
+      const [d,t]=sectionProgress(sec);
+      if(!pl){
+        pl=document.createElement('p');pl.className='sec-progress';
+        const sh=sec.querySelector('.sec-head');
+        sh.insertAdjacentElement('afterend',pl);
+      }
+      pl.textContent = sec.id==='quiz'
+        ? `Beantwortet: ${d} / ${t} Fragen`
+        : `Bearbeitet: ${d} / ${t} Aufgaben`;
+      pl.style.display='';
+    } else if(pl){ pl.style.display='none'; }
+    prevDone = open && done;
+  });
+}
+
+// Re-evaluate locks whenever progress is saved
+const __origPersist=persist;
+persist=function(){ __origPersist(); refreshLocks(); };
+
+// Also re-check when quiz cards get answered (quiz uses its own dataset, not persist always)
+document.addEventListener('click',e=>{ if(e.target.closest('#quizBox .opt')) setTimeout(refreshLocks,0); });
+
+// Banner
+(function(){
+  const b=document.getElementById('versionBanner');
+  if(MODE==='teacher'){
+    b.className='version-banner teacher';b.style.display='block';
+    b.textContent='👩‍🏫 LEHRERVERSION – alle Stationen offen, Lösungen sichtbar. (Diese Datei nicht an Schüler geben.)';
+  }else{
+    b.className='version-banner student';b.style.display='block';
+    b.textContent='Schülerversion – bearbeite die Stationen der Reihe nach. Die nächste öffnet sich automatisch.';
+  }
+})();
+
+// Teacher mode: reveal all solutions immediately
+if(MODE==='teacher'){
+  document.querySelectorAll('.task .reveal').forEach(r=>r.classList.add('show'));
+  document.querySelectorAll('.task .btn').forEach(b=>{ if(b.textContent.includes('Lösung')){b.textContent='Lösung sichtbar (Lehrer)';b.disabled=true;} });
+}
+
+refreshLocks();
+
+/* ---------- reset all saved progress ---------- */
+document.getElementById('resetAll').addEventListener('click',()=>{
+  if(confirm('Wirklich alle eigenen Antworten und Ergebnisse auf diesem Gerät löschen? Das kann nicht rückgängig gemacht werden.')){
+    try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+    location.reload();
+  }
+});
+
+/* ---------- saved indicator ---------- */
+(function(){
+  const tag=document.createElement('div');
+  tag.id='saveTag';
+  tag.textContent='💾 gespeichert';
+  tag.style.cssText='position:fixed;left:14px;bottom:20px;z-index:160;background:#3f6f4a;color:#fff;'
+    +'font-family:Helvetica Neue,Arial,sans-serif;font-size:12px;font-weight:700;padding:7px 13px;'
+    +'border-radius:20px;box-shadow:0 4px 14px rgba(26,23,20,.25);opacity:0;transition:opacity .3s;pointer-events:none';
+  document.body.appendChild(tag);
+  let t;
+  const origPersist=persist;
+  window.__flagSaved=function(){ tag.style.opacity='1'; clearTimeout(t); t=setTimeout(()=>tag.style.opacity='0',1100); };
+})();
+document.getElementById('dlPdf').addEventListener('click',e=>{
+  if(e.target.getAttribute('href')==='#'){
+    e.preventDefault();
+    alert('Die Lösungs-PDF „Loesungen_Extremismus_Terrorismus.pdf“ liegt im selben Ordner wie diese Seite. Lege beide Dateien zusammen ab, dann öffnet der Button die PDF.');
+    e.target.setAttribute('href','Loesungen_Extremismus_Terrorismus.pdf');
+  }
+});
+</script>
+</body>
+</html>
