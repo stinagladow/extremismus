@@ -1601,5 +1601,71 @@ document.getElementById('dlPdf').addEventListener('click',e=>{
   }
 });
 </script>
+
+<!-- ================= PAGINATOR: jede Station = eigene Seite ================= -->
+<style>
+  body.paginated section,
+  body.paginated header.hero{display:none}
+  body.paginated section.page-active,
+  body.paginated header.hero.page-active{display:block;animation:pageIn .25s ease}
+  @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  nav a.nav-current{background:var(--accent);color:#fff}
+  .pager{max-width:860px;margin:8px auto 0;padding:28px 20px 8px;
+    display:flex;justify-content:space-between;gap:12px;align-items:center}
+  .pager button{font-family:'Helvetica Neue',Arial;font-size:13.5px;font-weight:700;
+    cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);
+    padding:11px 18px;border-radius:9px;transition:.15s;max-width:46%;text-align:left}
+  .pager button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+  .pager button:disabled{opacity:.32;cursor:default}
+  .pager .pg-next{text-align:right}
+  .pager .pg-count{font-size:12px;color:var(--ink-soft);white-space:nowrap;flex:0 0 auto}
+</style>
+<script>
+(function(){
+  var ids=["start","wortschatz","deutschland","international","gesetze","heute","quiz","zusammenfassung"];
+  var labels=["Start","Wortschatz","D 1990–2020","9/11","Gesetze","Heute","Quiz","Bilanz"];
+  var pages=ids.map(function(id){return document.getElementById(id);}).filter(Boolean);
+  if(pages.length<2)return;
+  document.body.classList.add("paginated");
+
+  // Pager an jede Seite anhaengen
+  pages.forEach(function(pg,i){
+    var inner=pg.querySelector(".wrap")||pg;
+    var bar=document.createElement("div");bar.className="pager";
+    var prev=document.createElement("button");prev.type="button";prev.className="pg-prev";
+    prev.innerHTML=i>0?"← "+labels[i-1]:"";prev.disabled=i===0;
+    var count=document.createElement("span");count.className="pg-count";
+    count.textContent="Seite "+(i+1)+" / "+pages.length;
+    var next=document.createElement("button");next.type="button";next.className="pg-next";
+    next.innerHTML=i<pages.length-1?labels[i+1]+" →":"";next.disabled=i===pages.length-1;
+    prev.addEventListener("click",function(){go(i-1);});
+    next.addEventListener("click",function(){go(i+1);});
+    bar.appendChild(prev);bar.appendChild(count);bar.appendChild(next);
+    inner.appendChild(bar);
+  });
+
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll("nav a[href^='#']"));
+
+  function show(i){
+    pages.forEach(function(p,k){p.classList.toggle("page-active",k===i);});
+    navLinks.forEach(function(a){
+      a.classList.toggle("nav-current",a.getAttribute("href")==="#"+ids[i]);
+    });
+    if(window.scrollTo)window.scrollTo(0,0);
+  }
+  function go(i){
+    if(i<0||i>=pages.length)return;
+    if(history.replaceState)history.replaceState(null,"","#"+ids[i]);
+    else location.hash=ids[i];
+    show(i);
+  }
+  function idxFromHash(){
+    var h=(location.hash||"").replace("#","");
+    var i=ids.indexOf(h);return i<0?0:i;
+  }
+  window.addEventListener("hashchange",function(){show(idxFromHash());});
+  show(idxFromHash());
+})();
+</script>
 </body>
 </html>
