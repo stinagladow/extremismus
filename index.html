@@ -65,6 +65,9 @@
     font-weight:800;letter-spacing:-.01em}
   header.hero p.lede{font-size:18px;color:var(--ink-soft);max-width:620px;margin:0 0 8px}
   .tightrope{margin:30px 0 4px;height:108px;position:relative}
+  .hero-kari{margin:30px auto 4px;max-width:600px}
+  .hero-kari img{display:block;width:100%;height:auto;border:1px solid var(--steel,#2a2f35);border-radius:8px;background:#fff}
+  .figbox img.kari-img{display:block;width:100%;height:auto;border-radius:6px}
   .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
   .chip{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:20px;
     padding:6px 13px;color:var(--ink-soft)}
@@ -82,16 +85,16 @@
   p{margin:0 0 14px}
 
   /* ---------- source / darstellungstext box ---------- */
-  .source{background:#fbf9f4;border:1px solid var(--line);border-left:4px solid var(--steel);
+  .source{background:#eef1f0;border:1px solid var(--line);border-left:4px solid var(--steel);
     border-radius:4px;padding:16px 18px;margin:18px 0;font-size:15.5px}
   .source .src-tag{font-family:var(--font-mono);font-size:11px;
     letter-spacing:.08em;text-transform:uppercase;color:var(--steel);font-weight:700;margin-bottom:6px;display:block}
-  .quote{border-left:4px solid var(--accent);background:#fbf3f1;padding:14px 18px;margin:18px 0;
-    font-style:italic;border-radius:4px;color:#3a2422}
+  .quote{border-left:4px solid var(--accent);background:#ebeeed;padding:14px 18px;margin:18px 0;
+    font-style:italic;border-radius:4px;color:#1f242a}
   .quote .who{display:block;font-style:normal;font-size:13px;color:var(--ink-soft);
     margin-top:8px;font-family:var(--font-mono)}
   .booknote{font-size:13px;color:var(--ink-soft);font-family:var(--font-mono);
-    background:#efe9dc;border-radius:4px;padding:8px 12px;margin:6px 0 14px;display:flex;gap:8px;align-items:flex-start}
+    background:#e3e7e5;border-radius:4px;padding:8px 12px;margin:6px 0 14px;display:flex;gap:8px;align-items:flex-start}
   .booknote::before{content:"📖";flex:0 0 auto}
 
   /* ---------- video ---------- */
@@ -108,7 +111,7 @@
     border-bottom:9px solid transparent;margin-left:3px}
   .video .vtitle{font-family:var(--font-mono);font-weight:700;font-size:14.5px}
   .video .vmeta{font-size:12.5px;color:var(--ink-soft)}
-  .vprompt{background:#fbf3f1;border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;
+  .vprompt{background:#ebeeed;border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;
     padding:10px 14px 11px;margin:0 0 14px;font-size:13.5px;color:var(--ink)}
   .vprompt b{font-family:var(--font-mono)}
   .vprompt .vp-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.07em;
@@ -124,7 +127,7 @@
     display:flex;flex-direction:column;justify-content:center}
   .vfront .vterm{font-family:var(--font-mono);font-weight:700;font-size:16px;color:var(--steel)}
   .vfront .vhint{font-size:12px;color:var(--ink-soft);margin-top:6px;font-family:var(--font-mono)}
-  .vback{transform:rotateY(180deg);background:#f6f1e8;border-radius:8px;font-size:13.5px}
+  .vback{transform:rotateY(180deg);background:#e9eceb;border-radius:8px;font-size:13.5px}
 
   /* ---------- memory game ---------- */
   .memory-wrap{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px;margin:20px 0}
@@ -139,7 +142,7 @@
     display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;
     font-family:var(--font-mono)}
   .mem-front{background:var(--steel);color:#fff;font-size:24px;font-weight:800}
-  .mem-back{background:#f6f1e8;border:1px solid var(--line);transform:rotateY(180deg);
+  .mem-back{background:#e9eceb;border:1px solid var(--line);transform:rotateY(180deg);
     font-size:12px;line-height:1.25;color:var(--ink)}
   .mem-card.matched .mem-back{background:#eef5ef;border-color:var(--ok)}
   .mem-back.term{font-weight:700;color:var(--steel);font-size:13px}
@@ -174,19 +177,19 @@
   .mat-row{display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;
     padding:10px 14px;border-top:1px solid var(--line);background:#fff;font-size:14.5px}
   .mat-row:first-child{border-top:none}
-  .mat-row:nth-child(even){background:#fbf9f4}
+  .mat-row:nth-child(even){background:#eef1f0}
   .mat-id{font-family:var(--font-mono);font-weight:800;font-size:13.5px;color:#fff;
     background:var(--accent);border-radius:6px;padding:4px 0;text-align:center}
   .mat-d{color:var(--ink)}
   .mat-s{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-soft);
-    background:#efe9dc;border-radius:20px;padding:3px 10px;white-space:nowrap}
+    background:#e3e7e5;border-radius:20px;padding:3px 10px;white-space:nowrap}
   @media(max-width:560px){.mat-row{grid-template-columns:48px 1fr;gap:8px}.mat-s{display:none}}
   .matref{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);
     font-size:11.5px;font-weight:700;letter-spacing:.03em;color:#fff;background:var(--accent-soft);
     border-radius:5px;padding:3px 9px;margin-bottom:4px}
   .matref.m-steel{background:var(--steel)}
   .task-ref{font-family:var(--font-mono);font-size:12px;color:var(--accent);
-    font-weight:700;background:#fbf3f1;border:1px dashed var(--accent);border-radius:6px;
+    font-weight:700;background:#ebeeed;border:1px dashed var(--accent);border-radius:6px;
     padding:5px 10px;display:inline-block;margin-bottom:10px}
   .task-ref::before{content:"↳ ";color:var(--ink-soft);font-weight:400}
 
@@ -222,25 +225,25 @@
   .goals-intro{font-size:14px;color:var(--ink-soft);margin:0 0 8px;font-style:italic}
   .goals-list{margin:0;padding-left:20px}
   .goals-list li{font-size:14.5px;margin:6px 0;color:var(--ink)}
-  .goals-tip{font-size:13.5px;color:var(--ink-soft);background:#f6f1e8;border-radius:6px;
+  .goals-tip{font-size:13.5px;color:var(--ink-soft);background:#e9eceb;border-radius:6px;
     padding:10px 13px;margin:14px 0 0;font-family:var(--font-mono)}
 
   /* ---------- differentiation ---------- */
   .diff{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px}
   .diff-row{display:flex;gap:9px;align-items:flex-start}
   .diff-btn{font-family:var(--font-mono);font-size:12.5px;font-weight:700;
-    border:1px solid var(--line);background:#fcfbf8;border-radius:7px;padding:8px 12px;cursor:pointer;
+    border:1px solid var(--line);background:#f3f5f4;border-radius:7px;padding:8px 12px;cursor:pointer;
     flex:0 0 auto;transition:transform .16s var(--ease-out),background-color .12s ease,border-color .12s ease;text-align:left}
   .diff-btn:active{transform:scale(.97)}
   .diff-btn.help{border-color:var(--steel);color:var(--steel)}
   .diff-btn.help:hover{background:#eef1f3}
   .diff-btn.ext{border-color:var(--gold);color:#7a5e1f}
-  .diff-btn.ext:hover{background:#f6efdd}
+  .diff-btn.ext:hover{background:#e5e9e7}
   .diff-body{display:none;font-size:14px;background:#f6f8f4;border-radius:7px;padding:11px 13px;
     margin-top:2px;border-left:3px solid var(--ok)}
   .diff-body.show{display:block;animation:fade .25s var(--ease-out)}
   .diff-body.help-body{background:#eef1f3;border-left-color:var(--steel)}
-  .diff-body.ext-body{background:#f9f4e6;border-left-color:var(--gold)}
+  .diff-body.ext-body{background:#e7ebe9;border-left-color:var(--gold)}
   .diff-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;
     text-transform:uppercase;font-weight:700;display:block;margin-bottom:4px}
   .diff-label.h{color:var(--steel)}
@@ -272,7 +275,7 @@
 
   /* multiple choice */
   .opt{display:block;border:1px solid var(--line);border-radius:7px;padding:11px 13px;margin:7px 0;
-    cursor:pointer;font-size:15px;transition:transform .16s var(--ease-out),border-color .12s ease,background-color .12s ease;background:#fcfbf8}
+    cursor:pointer;font-size:15px;transition:transform .16s var(--ease-out),border-color .12s ease,background-color .12s ease;background:#f3f5f4}
   .opt:active:not(.locked){transform:scale(.99)}
   .opt:hover{border-color:var(--steel)}
   .opt.correct{border-color:var(--ok);background:#eef5ef}
@@ -282,7 +285,7 @@
 
   /* free text */
   textarea{width:100%;min-height:96px;border:1px solid var(--line);border-radius:8px;
-    padding:11px 12px;font-family:inherit;font-size:15px;resize:vertical;background:#fcfbf8;color:var(--ink)}
+    padding:11px 12px;font-family:inherit;font-size:15px;resize:vertical;background:#f3f5f4;color:var(--ink)}
   textarea:focus{outline:2px solid var(--steel);border-color:var(--steel)}
   .ta-meter{font-size:12px;color:var(--ink-soft);margin:6px 0 0;font-family:var(--font-mono);
     display:flex;justify-content:space-between;align-items:center}
@@ -328,7 +331,7 @@
   .tl-body p{font-size:14.5px;margin:3px 0 0;color:var(--ink-soft)}
 
   /* summary */
-  #zusammenfassung{background:var(--steel);color:#efe9dc;border:none}
+  #zusammenfassung{background:var(--steel);color:#e3e7e5;border:none}
   #zusammenfassung h2{color:#fff}
   #zusammenfassung .sec-num{background:var(--gold);color:var(--ink)}
   #zusammenfassung .sec-sub{color:#b9c2c9}
@@ -395,24 +398,9 @@
     <h1>Aus den 1990ern gelernt? Wie sich die Bundesrepublik gegen Extremismus und Terror verteidigt – und wo ihre Grenzen liegen.</h1>
     <p class="lede">Seit der Wiedervereinigung steht die Demokratie unter Druck: rechte Gewalt von Rostock über den NSU bis Halle und Hanau, dazu der internationale Terrorismus seit dem 11. September 2001. In vier Stationen prüfst du, wie der Staat reagiert hat – mit Gesetzen, Verboten und Prävention – und beurteilst am Ende selbst, wo die Grenzen einer <em>wehrhaften Demokratie</em> liegen.</p>
 
-    <div class="tightrope">
-      <!-- Signature: eine Waage Freiheit<->Sicherheit ueber dem Abgrund Terror; kippt bei Scroll/Zeiger (nach Mester, M11) -->
-      <svg viewBox="0 0 820 200" width="100%" height="200" role="img" aria-label="Eine Waage zwischen Freiheit und Sicherheit ueber dem Abgrund Terror, im Gleichgewicht gehalten">
-        <line x1="410" y1="120" x2="410" y2="168" stroke="#2a2f35" stroke-width="6"/>
-        <polygon points="386,170 434,170 410,120" fill="#2a2f35"/>
-        <rect x="346" y="170" width="128" height="6" rx="2" fill="#2a2f35"/>
-        <g id="waageBeam" transform="rotate(0 410 120)">
-          <line x1="178" y1="120" x2="642" y2="120" stroke="#15181c" stroke-width="4"/>
-          <circle cx="410" cy="120" r="6" fill="#15181c"/>
-          <line x1="200" y1="120" x2="200" y2="150" stroke="#565d63" stroke-width="1.5"/>
-          <path d="M174 150 h52 l-9 17 h-34 z" fill="#26408b"/>
-          <text x="200" y="111" font-family="IBM Plex Mono,monospace" font-size="12.5" font-weight="600" fill="#26408b" text-anchor="middle">FREIHEIT</text>
-          <line x1="620" y1="120" x2="620" y2="150" stroke="#565d63" stroke-width="1.5"/>
-          <path d="M594 150 h52 l-9 17 h-34 z" fill="#2a2f35"/>
-          <text x="620" y="111" font-family="IBM Plex Mono,monospace" font-size="12.5" font-weight="600" fill="#2a2f35" text-anchor="middle">SICHERHEIT</text>
-        </g>
-        <text x="410" y="194" font-family="IBM Plex Mono,monospace" font-size="12" letter-spacing="2" font-weight="600" fill="#9d2f22" text-anchor="middle">A B G R U N D&#160;&#160;·&#160;&#160;T E R R O R</text>
-      </svg>
+    <div class="hero-kari">
+      <img src="karikatur-mester.jpg" width="1100" height="701" loading="eager"
+           alt="Karikatur (Gerhard Mester, 2006): Die Demokratie balanciert als Seiltänzer auf einem Seil zwischen zwei Bäumen mit den Aufschriften „Freiheit“ und „Sicherheit“; darunter klafft der Abgrund „Terror“.">
     </div>
 
     <div class="meta-row">
@@ -707,7 +695,7 @@
     <div class="figbox">
       <span class="matref">Material M8 · Karikatur (Freiheit nach 9/11)</span>
       <svg viewBox="0 0 720 250" width="100%" role="img" aria-label="Karikatur-Nachzeichnung: Die Waage zwischen Sicherheit und Freiheit gerät nach dem 11. September aus dem Gleichgewicht">
-        <rect x="0" y="0" width="720" height="250" fill="#fbf9f4"/>
+        <rect x="0" y="0" width="720" height="250" fill="#eef1f0"/>
         <line x1="360" y1="40" x2="360" y2="150" stroke="#2e3a44" stroke-width="6"/>
         <polygon points="360,150 330,210 390,210" fill="#2e3a44"/>
         <line x1="180" y1="70" x2="540" y2="55" stroke="#1a1714" stroke-width="3"/>
@@ -869,21 +857,8 @@
 
     <h3><span class="matref" style="margin-bottom:6px;display:inline-block">Material M11 · Karikatur (Mester 2006, Buch S. 276)</span><br>Karikatur: Freiheit vs. Sicherheit</h3>
     <div class="figbox">
-      <svg viewBox="0 0 720 230" width="100%" role="img" aria-label="Karikatur-Nachzeichnung: Demokratie balanciert auf einem Seil zwischen Freiheit und Sicherheit über dem Abgrund Terror">
-        <rect x="0" y="0" width="720" height="230" fill="#fbf9f4"/>
-        <line x1="120" y1="60" x2="120" y2="200" stroke="#2e3a44" stroke-width="10"/>
-        <line x1="600" y1="60" x2="600" y2="200" stroke="#2e3a44" stroke-width="10"/>
-        <text x="120" y="48" font-family="IBM Plex Mono,monospace" font-size="14" font-weight="800" fill="#2e3a44" text-anchor="middle">FREIHEIT</text>
-        <text x="600" y="48" font-family="IBM Plex Mono,monospace" font-size="14" font-weight="800" fill="#2e3a44" text-anchor="middle">SICHERHEIT</text>
-        <line x1="120" y1="92" x2="600" y2="92" stroke="#1a1714" stroke-width="3"/>
-        <path d="M120 200 Q360 250 600 200 L600 230 L120 230 Z" fill="#efe3e1"/>
-        <text x="360" y="220" font-family="IBM Plex Mono,monospace" font-size="15" letter-spacing="5" font-weight="800" fill="#9a2d2d" text-anchor="middle">T E R R O R</text>
-        <line x1="320" y1="92" x2="400" y2="92" stroke="#9a2d2d" stroke-width="3"/>
-        <circle cx="360" cy="72" r="9" fill="#1a1714"/>
-        <line x1="360" y1="81" x2="360" y2="92" stroke="#1a1714" stroke-width="4"/>
-        <text x="360" y="62" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="700" fill="#1a1714" text-anchor="middle">DEMOKRATIE</text>
-      </svg>
-      <figcaption>Nachzeichnung der Bildidee nach <b>Gerhard Mester, 2006 (Buch S. 276, M 11)</b>. Die Original-Karikatur findest du im Buch auf S. 276.</figcaption>
+      <img class="kari-img" src="karikatur-mester.jpg" width="1100" height="701" loading="lazy" alt="Karikatur (Gerhard Mester, 2006): Die Demokratie balanciert als Seiltänzer auf einem Seil zwischen zwei Bäumen „Freiheit“ und „Sicherheit“; darunter klafft der Abgrund „Terror“.">
+      <figcaption>Karikatur: <b>Gerhard Mester, 2006 (Buch S. 276, M 11)</b>. Die Demokratie balanciert auf dem schmalen Grat zwischen Freiheit und Sicherheit über dem Abgrund „Terror“.</figcaption>
     </div>
 
     <div class="task">
@@ -1790,6 +1765,10 @@ if(typeof refreshLocks==='function'){
   .op-toggle:hover{background:#1d2228}
   /* Schueler-Version-Banner oben ausblenden (Lehrer-Warnung bleibt) */
   .version-banner.student{display:none!important}
+  /* diff-Buttons sind in der flex-booknote verschachtelt -> sie sollen UNTER
+     den Text, volle Breite, nicht rechts daneben */
+  .booknote{flex-wrap:wrap}
+  .booknote .diff{flex:1 0 100%;margin-top:10px}
   /* Stationen-Register: Nav als alte Aktenreiter in einer Schublade */
   nav{background:#23282e;border-bottom:3px solid #15181c}
   .nav-inner{max-width:none;padding:0 16px;align-items:flex-end;gap:3px}
