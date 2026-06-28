@@ -229,7 +229,11 @@
     padding:10px 13px;margin:14px 0 0;font-family:var(--font-mono)}
 
   /* ---------- differentiation ---------- */
-  .diff{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px}
+  .diff{margin-top:14px;border:1px solid var(--line);border-radius:10px;padding:11px 12px 12px;
+    background:#f4f6f5;display:flex;flex-direction:column;gap:8px}
+  .diff::before{content:"🛟 Hilfe & 🚀 Erweiterung";font-family:var(--font-mono);font-size:10.5px;
+    letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--ink-soft);
+    padding-bottom:8px;border-bottom:1px dashed var(--line)}
   .diff-row{display:flex;gap:9px;align-items:flex-start}
   .diff-btn{font-family:var(--font-mono);font-size:12.5px;font-weight:700;
     border:1px solid var(--line);background:#f3f5f4;border-radius:7px;padding:8px 12px;cursor:pointer;
@@ -547,20 +551,8 @@
     <div class="booknote">Zusammengefasst nach <b>Buch S. 271, M 2-Erläuterung</b> und der Aufgabenlösung <b>S. 272 (Recherche „2000–2006: NSU-Morde“)</b> mit der Liste der Opfer.</div>
 
     <div class="figbox">
-      <!-- schaubild: rechtsextreme Straftaten 1990-2009 nach M2 -->
-      <svg viewBox="0 0 720 270" width="100%" role="img" aria-label="Säulendiagramm: Entwicklung rechtsextremer Straftaten und Gewalttaten 1990 bis 2009">
-        <text x="12" y="20" font-family="IBM Plex Mono,monospace" font-size="13" font-weight="700" fill="#1a1714">Rechtsextreme Straftaten 1990–2009 · schematischer Trend (nach M 2)</text>
-        <line x1="46" y1="40" x2="46" y2="220" stroke="#4a443c" stroke-width="1.5"/>
-        <line x1="46" y1="220" x2="700" y2="220" stroke="#4a443c" stroke-width="1.5"/>
-        <text x="40" y="60" font-size="10" fill="#4a443c" text-anchor="end">20 000</text>
-        <text x="40" y="140" font-size="10" fill="#4a443c" text-anchor="end">10 000</text>
-        <g id="bars"></g>
-        <rect x="500" y="244" width="13" height="13" fill="#c98a5a"/>
-        <text x="519" y="255" font-size="11" fill="#4a443c">Straftaten insgesamt</text>
-        <rect x="640" y="244" width="13" height="13" fill="#9a2d2d"/>
-        <text x="659" y="255" font-size="11" fill="#4a443c">Gewalttaten</text>
-      </svg>
-      <figcaption><span class="matref" style="margin-bottom:6px;display:inline-block">Material M4 · Statistik (nach Buch S. 271, M 2)</span><br><b>Schematische Verlaufsdarstellung</b> nach der Beschreibung zu Buch S. 271, M 2 (Quelle: Verfassungsschutzberichte). Die Balken zeigen den <b>Trend</b> (zwei Wellen), nicht die amtlichen Jahreswerte. Die exakten Zahlen liest du im Original-Diagramm M 2 im Buch ab.</figcaption>
+      <img class="kari-img" src="rechtsextrem-1990-2009.svg" loading="lazy" alt="Säulendiagramm (Quelle: Verfassungsschutzberichte): Rechtsextreme Straf- und Gewalttaten 1990 bis 2009. Die Gesamtstraftaten steigen in zwei Wellen – ein Hoch Anfang der 1990er (1992/93) und ein erneuter, höherer Anstieg in den 2000ern bis 2008/09; die Gewalttaten bilden durchgehend einen kleineren Teil davon.">
+      <figcaption><span class="matref" style="margin-bottom:6px;display:inline-block">Material M4 · Statistik (nach Buch S. 271, M 2)</span><br>Rechtsextreme Straf- und Gewalttaten 1990–2009 (Quelle: Verfassungsschutzberichte; aus der Originalgrafik abgelesene, gerundete Werte). Gut erkennbar sind die <b>zwei Wellen</b>. Die exakten Jahreswerte liest du im Original-Diagramm M 2 im Buch ab.</figcaption>
     </div>
 
     <div class="task">
