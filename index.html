@@ -1602,7 +1602,7 @@ document.getElementById('dlPdf').addEventListener('click',e=>{
 });
 </script>
 
-<!-- ================= PAGINATOR: jede Station = eigene Seite ================= -->
+<!-- ================= PAGINATOR: jede Station = eigene Seite, mit Gating ================= -->
 <style>
   body.paginated section,
   body.paginated header.hero{display:none}
@@ -1610,6 +1610,8 @@ document.getElementById('dlPdf').addEventListener('click',e=>{
   body.paginated header.hero.page-active{display:block;animation:pageIn .25s ease}
   @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   nav a.nav-current{background:var(--accent);color:#fff}
+  nav a.nav-locked{opacity:.4;pointer-events:none;cursor:not-allowed}
+  nav a.nav-locked::after{content:" 🔒";font-size:11px}
   .pager{max-width:860px;margin:8px auto 0;padding:28px 20px 8px;
     display:flex;justify-content:space-between;gap:12px;align-items:center}
   .pager button{font-family:'Helvetica Neue',Arial;font-size:13.5px;font-weight:700;
@@ -1618,7 +1620,13 @@ document.getElementById('dlPdf').addEventListener('click',e=>{
   .pager button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
   .pager button:disabled{opacity:.32;cursor:default}
   .pager .pg-next{text-align:right}
-  .pager .pg-count{font-size:12px;color:var(--ink-soft);white-space:nowrap;flex:0 0 auto}
+  .pager .pg-count{font-size:12px;color:var(--ink-soft);white-space:nowrap;flex:0 0 auto;text-align:center}
+  .pg-hint{display:block;font-size:11px;font-weight:400;color:var(--ink-soft);margin-top:2px}
+  #pgToast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;font-family:'Helvetica Neue',Arial;font-size:13.5px;
+    padding:12px 18px;border-radius:24px;box-shadow:0 6px 20px rgba(26,23,20,.3);
+    opacity:0;transition:.3s;pointer-events:none;z-index:300;max-width:90vw;text-align:center}
+  #pgToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 <script>
 (function(){
@@ -1626,46 +1634,108 @@ document.getElementById('dlPdf').addEventListener('click',e=>{
   var labels=["Start","Wortschatz","D 1990–2020","9/11","Gesetze","Heute","Quiz","Bilanz"];
   var pages=ids.map(function(id){return document.getElementById(id);}).filter(Boolean);
   if(pages.length<2)return;
+  var teacher=(window.STATION_MODE==='teacher');
   document.body.classList.add("paginated");
 
+  // Lehrer: nichts sperren. Schueler: Sperre folgt der bestehenden Lock-Engine (.locked / .section-done).
+  function isLocked(i){
+    if(teacher)return false;
+    var pg=pages[i];
+    if(pg.classList.contains("locked"))return true;          // Lock-Engine hat Station gesperrt
+    if(pg.id==="zusammenfassung"){                            // Bilanz erst nach Quiz
+      var q=document.getElementById("quiz");
+      return !!q && !q.classList.contains("section-done");
+    }
+    return false;
+  }
+
   // Pager an jede Seite anhaengen
+  var nextBtns=[],prevBtns=[],counts=[];
   pages.forEach(function(pg,i){
     var inner=pg.querySelector(".wrap")||pg;
     var bar=document.createElement("div");bar.className="pager";
     var prev=document.createElement("button");prev.type="button";prev.className="pg-prev";
     prev.innerHTML=i>0?"← "+labels[i-1]:"";prev.disabled=i===0;
     var count=document.createElement("span");count.className="pg-count";
-    count.textContent="Seite "+(i+1)+" / "+pages.length;
+    count.innerHTML="Seite "+(i+1)+" / "+pages.length;
     var next=document.createElement("button");next.type="button";next.className="pg-next";
-    next.innerHTML=i<pages.length-1?labels[i+1]+" →":"";next.disabled=i===pages.length-1;
+    next.innerHTML=i<pages.length-1?labels[i+1]+" →":"✓ Ende";
     prev.addEventListener("click",function(){go(i-1);});
-    next.addEventListener("click",function(){go(i+1);});
+    next.addEventListener("click",function(){
+      if(i>=pages.length-1)return;
+      if(isLocked(i+1)){toast("Station „"+labels[i]+"“ erst vollständig bearbeiten, dann geht es weiter.");return;}
+      go(i+1);
+    });
     bar.appendChild(prev);bar.appendChild(count);bar.appendChild(next);
     inner.appendChild(bar);
+    nextBtns[i]=next;prevBtns[i]=prev;counts[i]=count;
   });
 
   var navLinks=Array.prototype.slice.call(document.querySelectorAll("nav a[href^='#']"));
+  navLinks.forEach(function(a){
+    a.addEventListener("click",function(e){
+      var i=ids.indexOf(a.getAttribute("href").replace("#",""));
+      if(i<0)return;
+      if(isLocked(i)){e.preventDefault();toast("Diese Station ist noch gesperrt – erst die vorherige abschließen.");return;}
+      e.preventDefault();go(i);
+    });
+  });
 
+  var toastEl=null,toastT=null;
+  function toast(msg){
+    if(!toastEl){toastEl=document.createElement("div");toastEl.id="pgToast";document.body.appendChild(toastEl);}
+    toastEl.textContent=msg;toastEl.classList.add("show");
+    if(toastT)clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove("show");},3200);
+  }
+
+  var current=0;
   function show(i){
+    current=i;
     pages.forEach(function(p,k){p.classList.toggle("page-active",k===i);});
     navLinks.forEach(function(a){
       a.classList.toggle("nav-current",a.getAttribute("href")==="#"+ids[i]);
     });
     if(window.scrollTo)window.scrollTo(0,0);
+    sync();
   }
   function go(i){
     if(i<0||i>=pages.length)return;
+    if(isLocked(i)){toast("Diese Station ist noch gesperrt.");return;}
     if(history.replaceState)history.replaceState(null,"","#"+ids[i]);
     else location.hash=ids[i];
     show(i);
   }
   function idxFromHash(){
     var h=(location.hash||"").replace("#","");
-    var i=ids.indexOf(h);return i<0?0:i;
+    var i=ids.indexOf(h);if(i<0)i=0;
+    while(i>0&&isLocked(i))i--;   // auf gesperrte Seite gelandet -> zurueck auf letzte offene
+    return i;
   }
+  // Nav-Sperren + Weiter-Button live aktualisieren
+  function sync(){
+    navLinks.forEach(function(a){
+      var i=ids.indexOf(a.getAttribute("href").replace("#",""));
+      if(i<0)return;
+      a.classList.toggle("nav-locked",isLocked(i)&&i!==current);
+    });
+    nextBtns.forEach(function(btn,i){
+      if(i>=pages.length-1)return;
+      var locked=isLocked(i+1);
+      btn.disabled=locked;
+      btn.innerHTML=labels[i+1]+" →"+(locked?'<span class="pg-hint">🔒 Station zuerst abschließen</span>':"");
+    });
+  }
+  window.__pagerSync=sync;
+
   window.addEventListener("hashchange",function(){show(idxFromHash());});
   show(idxFromHash());
 })();
+
+// Lock-Engine-Updates an den Paginator weiterreichen (Weiter-Button/Nav live entsperren)
+if(typeof refreshLocks==='function'){
+  var __pgOrigRefresh=refreshLocks;
+  refreshLocks=function(){ __pgOrigRefresh(); if(window.__pagerSync)window.__pagerSync(); };
+}
 </script>
 </body>
 </html>
