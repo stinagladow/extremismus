@@ -1450,7 +1450,7 @@ function sectionComplete(sec){
   const tasks=[...sec.querySelectorAll('.task')];
   if(!tasks.length) return true;
   return tasks.every(t=>{
-    const mc=t.querySelector('.mc');
+    const mc=t.querySelector('.mc[data-correct]');
     if(mc) return mc.dataset.done==='1';
     const ta=t.querySelector('textarea');
     if(ta) return t.querySelector('.reveal').classList.contains('show');
@@ -1466,7 +1466,7 @@ function sectionProgress(sec){
   }
   const tasks=[...sec.querySelectorAll('.task')];
   const done=tasks.filter(t=>{
-    const mc=t.querySelector('.mc');
+    const mc=t.querySelector('.mc[data-correct]');
     if(mc) return mc.dataset.done==='1';
     const ta=t.querySelector('textarea');
     if(ta) return t.querySelector('.reveal').classList.contains('show');
