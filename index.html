@@ -231,7 +231,7 @@
   /* ---------- differentiation ---------- */
   .diff{margin-top:12px;padding-top:11px;border-top:1px dashed var(--line);
     display:flex;flex-direction:column;gap:8px}
-  .diff-row{display:flex;gap:9px;align-items:flex-start}
+  .diff-row{display:flex;flex-wrap:wrap;gap:9px;align-items:flex-start}
   .diff-btn{font-family:var(--font-mono);font-size:12.5px;font-weight:700;
     border:1px solid var(--line);background:#f3f5f4;border-radius:7px;padding:8px 12px;cursor:pointer;
     flex:0 0 auto;transition:transform .16s var(--ease-out),background-color .12s ease,border-color .12s ease;text-align:left}
@@ -306,7 +306,7 @@
     text-transform:uppercase;color:var(--ok);font-weight:700;margin-bottom:6px}
   @keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
   @keyframes popIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
-  .self-check{display:flex;gap:8px;margin-top:12px;align-items:center;font-size:13px;
+  .self-check{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center;font-size:13px;
     font-family:var(--font-mono);color:var(--ink-soft)}
   .self-check button{border:1px solid var(--line);background:#fff;border-radius:6px;
     padding:6px 11px;cursor:pointer;font-size:13px;transition:transform .16s var(--ease-out),background-color .12s ease,border-color .12s ease}
@@ -664,49 +664,6 @@
     <div class="lock-note"><span class="lock-ico">🔒</span><span>Diese Station ist noch gesperrt. Bearbeite zuerst <b>Station 1</b> vollständig – sobald alle Aufgaben dort bearbeitet sind, öffnet sich Station 2 automatisch.</span></div>
     <p class="sec-sub">Wie 9/11 das globale Ausmaß der Bedrohung sichtbar machte – und Deutschland betraf.</p>
 
-    <div class="task">
-      <span class="task-ref">Aufgabe 6 · Material: M8 (Karikatur Waage)</span>
-      <div class="q-meta"><span class="q-type kari">Karikatur-Analyse</span></div>
-    <div class="figbox">
-      <span class="matref">Material M8 · Karikatur (Freiheit nach 9/11)</span>
-      <svg viewBox="0 0 720 250" width="100%" role="img" aria-label="Karikatur-Nachzeichnung: Die Waage zwischen Sicherheit und Freiheit gerät nach dem 11. September aus dem Gleichgewicht">
-        <rect x="0" y="0" width="720" height="250" fill="#eef1f0"/>
-        <line x1="360" y1="40" x2="360" y2="150" stroke="#2e3a44" stroke-width="6"/>
-        <polygon points="360,150 330,210 390,210" fill="#2e3a44"/>
-        <line x1="180" y1="70" x2="540" y2="55" stroke="#1a1714" stroke-width="3"/>
-        <!-- left pan: Sicherheit (heavy, low) -->
-        <line x1="200" y1="70" x2="200" y2="150" stroke="#4a443c" stroke-width="1.5"/>
-        <path d="M150 150 h100 l-15 35 h-70 z" fill="#9a2d2d" opacity="0.85"/>
-        <text x="200" y="173" font-family="IBM Plex Mono,monospace" font-size="12" font-weight="800" fill="#fff" text-anchor="middle">SICHERHEIT</text>
-        <!-- right pan: Freiheit (light, high) -->
-        <line x1="520" y1="56" x2="520" y2="110" stroke="#4a443c" stroke-width="1.5"/>
-        <path d="M475 110 h90 l-13 30 h-64 z" fill="#c98a5a" opacity="0.6"/>
-        <text x="520" y="130" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="800" fill="#1a1714" text-anchor="middle">FREIHEIT</text>
-        <text x="360" y="235" font-family="IBM Plex Mono,monospace" font-size="12" fill="#4a443c" text-anchor="middle">Nach 9/11: Das Gewicht verschiebt sich Richtung Sicherheit – die Freiheit hebt ab.</text>
-      </svg>
-      <figcaption>Eigene schematische Karikatur zur Debatte nach 9/11 (Bildidee „Waage Freiheit/Sicherheit“). Die Buch-Karikatur dazu ist Mester, M 11 (S. 276) – siehe Abschnitt 3.</figcaption>
-    </div>
-      <p class="qtext">Deute die Waage-Karikatur: Was sagt sie über die Folgen von 9/11 für das Verhältnis von Freiheit und Sicherheit aus?</p>
-      <textarea data-min="220" placeholder="Symbol Waage deuten + Aussage…"></textarea>
-      <div class="ta-meter"><span class="cnt">0 Zeichen</span><span class="ta-bar"><i></i></span></div>
-      <button class="btn" disabled>Lösung aufdecken</button>
-      <div class="reveal"><div class="rl">Erwartungshorizont</div>
-        <p>Die Waage symbolisiert das Gleichgewicht zwischen Freiheit und Sicherheit. Nach 9/11 senkt sich die Seite „Sicherheit“ tief nach unten, während „Freiheit“ nach oben „abhebt“ und an Gewicht verliert. Aussage: Aus Angst vor weiteren Anschlägen reagierten Staaten mit immer mehr Sicherheitsgesetzen und Überwachung – auf Kosten der bürgerlichen Freiheiten. Die Karikatur kritisiert, dass die Balance verloren geht und Grundrechte unter Druck geraten. <em>(Verbindung zu Buch S. 276, M 11)</em></p>
-        <div class="self-check"><span>Selbsteinschätzung:</span>
-          <button data-sc="1">Richtig</button><button data-sc="0">Nochmal ansehen</button></div>
-      </div>
-      <div class="diff">
-        <div class="diff-row">
-          <button class="diff-btn help">🛟 Hilfe / Tipp (Operator)</button>
-          <button class="diff-btn ext">🚀 Erweiterung</button>
-        </div>
-        <div class="diff-body help-body"><span class="diff-label h">Hilfe &amp; Operator</span>
-          Drei Schritte: <em>beschreiben</em> (Was zeigt die Waage?), <em>deuten</em> (Wofür stehen die beiden Seiten?), <em>Aussage</em> (Was kritisiert der Zeichner?). Den Operator „deuten/analysieren“ erklärt die 📘 Operatoren-Hilfe.</div>
-        <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
-          Übertrage das Bild auf heute: Nenne ein konkretes Sicherheitsgesetz nach 9/11 (siehe Station 3), das die „Freiheit“-Seite leichter gemacht hat.</div>
-      </div>
-    </div>
-
     <div class="video" href="https://www.youtube.com/watch?v=P232eySaRDs" target="_blank" rel="noopener" onclick="window.open(this.getAttribute('href'),'_blank');return false;">
       <span class="play"></span>
       <span><span class="vtitle">„9/11 – der Tag, der alles veränderte“ (auslandsjournal)</span>
@@ -717,7 +674,7 @@
     </div>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 7 · Material: M7 (9/11-Text) + Video</span>
+      <span class="task-ref">Aufgabe 6 · Material: M7 (9/11-Text) + Video</span>
       <div class="q-meta"><span class="q-type frei">Freitext</span></div>
     <p><span class="matref m-steel">Material M7 · Text (Buch S. 271, „Islamistischer Terror“)</span></p>
     <p>Am 11. September 2001 entführten islamistische Terroristen vier Flugzeuge in den USA; zwei steuerten sie in die Türme des World Trade Centers in New York, eines ins Pentagon, ein viertes stürzte nach dem Widerstand der Passagiere ab. Insgesamt starben rund 2 996 Menschen, darunter elf Deutsche. Die Anschläge zeigten das globale Ausmaß islamistisch-terroristischer Bedrohung. In den Ermittlungen wurde bekannt, dass die Täter Teile ihrer Planung auch von Deutschland aus koordiniert hatten (Hamburger Terrorzelle).</p>
@@ -755,7 +712,7 @@
     </div>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 8 · Material: M7 (Deutschland als Ziel)</span>
+      <span class="task-ref">Aufgabe 7 · Material: M7 (Deutschland als Ziel)</span>
       <div class="q-meta"><span class="q-type mc">Multiple Choice</span></div>
     <p><span class="matref m-steel">Material M7 · Text (Buch S. 271/272, Deutschland als Ziel)</span></p>
     <p>Auch die Bundesrepublik war Ziel: 2006 scheiterten Anschläge auf Regionalzüge in Hamm und Koblenz (die „Kofferbomben“ zündeten nicht), 2007 wurde ein Sprengstoffanschlag der „Sauerland-Gruppe“ verhindert. Begründet wurde dies in Propagandavideos oft mit der deutschen Beteiligung am internationalen Kampf gegen den Terror nach 2001. Damit verschob sich die Bedrohung von einem rein „fernen“ Ereignis hin zu einer konkreten Gefahr im eigenen Land.</p>
@@ -795,7 +752,7 @@
     <p>Diese Maßnahmen waren in Politik und Gesellschaft umstritten. Denn in einem demokratischen Rechtsstaat bedeutet jede Ausweitung der Sicherheit zugleich eine Einschränkung bürgerlicher Freiheiten. Genau dieses Spannungsverhältnis – Freiheit gegen Sicherheit – ist der Kern der „wehrhaften Demokratie“: Sie verteidigt sich aktiv gegen ihre Feinde, ohne dabei selbst ihre freiheitlichen Grundlagen zu verraten.</p>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 9 · Material: M9 (Text „wehrhafte Demokratie“)</span>
+      <span class="task-ref">Aufgabe 8 · Material: M9 (Text „wehrhafte Demokratie“)</span>
       <div class="q-meta"><span class="q-type frei">Freitext · Textarbeit</span></div>
     <h3>Woher kommt die „wehrhafte Demokratie“?</h3>
     <div class="source">
@@ -830,7 +787,7 @@
     </div>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 10 · Material: M11 (Karikatur Mester)</span>
+      <span class="task-ref">Aufgabe 9 · Material: M11 (Karikatur Mester)</span>
       <div class="q-meta"><span class="q-type kari">Karikatur-Analyse</span></div>
     <h3><span class="matref" style="margin-bottom:6px;display:inline-block">Material M11 · Karikatur (Mester 2006, Buch S. 276)</span><br>Karikatur: Freiheit vs. Sicherheit</h3>
     <div class="figbox">
@@ -856,12 +813,12 @@
         <div class="diff-body help-body"><span class="diff-label h">Hilfe</span>
           Nutze die drei Schritte jeder Karikatur-Analyse: Erst <em>beschreiben</em> (Was sehe ich? Figur, Seil, Bäume, Abgrund, Beschriftungen). Dann <em>deuten</em> (Wofür steht jedes Element?). Zuletzt <em>die Aussage</em> formulieren (Was will der Zeichner uns sagen?). Die Operatoren-Hilfe unten rechts erklärt „analysieren“.</div>
         <div class="diff-body ext-body"><span class="diff-label e">Erweiterungsaufgabe</span>
-          Vergleiche diese Karikatur mit der „Waage“-Karikatur aus Abschnitt 2 (9/11). Beide zeigen das Verhältnis Freiheit/Sicherheit – aber mit unterschiedlichen Bildern. Welches Bild findest du treffender und warum? Begründe in zwei bis drei Sätzen.</div>
+          Deute das Bild weiter: Wofür steht der Abgrund „Terror“ unter dem Seil – und was würde passieren, wenn die Demokratie das Gleichgewicht zwischen den Bäumen „Freiheit“ und „Sicherheit“ verliert? Begründe deine Deutung der Karikatur in zwei bis drei Sätzen.</div>
       </div>
     </div>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 11 · Material: M10 (Zeitleiste)</span>
+      <span class="task-ref">Aufgabe 10 · Material: M10 (Zeitleiste)</span>
       <div class="q-meta"><span class="q-type mc">Multiple Choice</span></div>
     <h3><span class="matref m-steel" style="margin-bottom:6px;display:inline-block">Material M10 · Zeitleiste</span><br>Zeitleiste der Sicherheitsgesetzgebung</h3>
     <div class="timeline">
@@ -896,7 +853,7 @@
     </div>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 12 · Material: M9 + M10 (Text &amp; Zeitleiste)</span>
+      <span class="task-ref">Aufgabe 11 · Material: M9 + M10 (Text &amp; Zeitleiste)</span>
       <div class="q-meta"><span class="q-type frei">Freitext · Begründen</span></div>
     <div class="source">
       <span class="src-tag">Material M9 · Darstellungstext (Hintergrund: wehrhafte Demokratie)</span>
@@ -937,7 +894,7 @@
     </div>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 13 · Material: M12 (Hasselbach-Zitat)</span>
+      <span class="task-ref">Aufgabe 12 · Material: M12 (Hasselbach-Zitat)</span>
       <div class="q-meta"><span class="q-type frei">Freitext · Beurteilung</span></div>
       <div class="quote">Ein Aussteiger argumentierte sinngemäß: Verbote könnten die Szene erst recht zusammenschweißen und in die Illegalität drängen – dort entstehe womöglich mehr Gewalt, weil sich Leute für den illegalen Weg entschieden.<span class="who"><b>Material M12</b> · sinngemäß nach dem Interview mit Ingo Hasselbach (EXIT), 2001 — Buch S. 276, M 10</span></div>
       <p class="qtext">Beurteile: Sind <b>Verbote</b> extremistischer Organisationen (z. B. das gescheiterte NPD-Verbot) ein wirksames Mittel? Nenne je ein Argument dafür und dagegen.</p>
@@ -985,7 +942,7 @@
       <b>Wähle ein Porträt aus</b> und schreibe einen Satz dazu: Wer war diese Person, und was sagt ihr Schicksal über das Ausmaß rechter Gewalt in Deutschland? Das passt direkt zur Aufgabe „Streit ums Gedenken“ unten.</div>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 14 · Material: M13 (Zahlen) + Abschnitt 1</span>
+      <span class="task-ref">Aufgabe 13 · Material: M13 (Zahlen) + Abschnitt 1</span>
       <div class="q-meta"><span class="q-type frei">Freitext · Transfer</span></div>
     <p><span class="matref m-steel">Material M13 · Zahlen (Buch S. 272/273)</span></p>
     <p>Nach einem Rückgang in den 2000er-Jahren hat der Rechtsextremismus in den letzten Jahren wieder deutlich an Dynamik gewonnen. 2022 lag das rechtsextremistische Personenpotenzial bei rund 38 800 Personen, davon etwa 14 000 als gewaltorientiert eingestuft; registriert wurden knapp 21 000 rechtsextreme Straftaten, darunter über 1 000 Gewalttaten. Vorläufige Zahlen für 2023 zeigen einen weiteren Anstieg, besonders bei antisemitischen Straftaten. Die aktuellen Werte übertreffen teils sogar die der 1990er-Jahre.</p>
@@ -1012,7 +969,7 @@
     </div>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 15 · Material: M13 (Text, Buch M 8)</span>
+      <span class="task-ref">Aufgabe 14 · Material: M13 (Text, Buch M 8)</span>
       <div class="q-meta"><span class="q-type mc">Multiple Choice</span></div>
     <p><span class="matref m-steel">Material M13 · Text (Buch S. 275, M 8)</span></p>
     <p>Beim islamistischen Terrorismus verschob sich die Bedrohung: Laut Verfassungsschutzbericht 2022 geht sie heute vor allem von <b>dschihadistisch motivierten Einzeltätern</b> aus, die mit einfach beschaffbaren Tatmitteln „weiche“ Ziele angreifen. Oft bleibt unklar, ob die Tat aus islamistischer Motivation oder im Zusammenhang mit psychischer Erkrankung erfolgt.</p>
@@ -1040,7 +997,7 @@
     </div>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 16 · Material: M14 (Streit ums Gedenken)</span>
+      <span class="task-ref">Aufgabe 15 · Material: M14 (Streit ums Gedenken)</span>
       <div class="q-meta"><span class="q-type frei">Freitext · Begründen</span></div>
     <h3><span class="matref">Material M14 · Quelle (Streit ums Gedenken, Hanau)</span><br>Wohin gehört die Erinnerung?</h3>
     <p>Nach dem Anschlag in Hanau entstand ein Streit über das Gedenken. Wenige Monate nach der Tat schlug ein Lokalpolitiker vor, Hanau solle „zur Normalität zurückkehren“ und die Gedenktafeln mit den Namen der Ermordeten aus der Innenstadt entfernen – etwa auf den Friedhof verlegen. Die Angehörigen widersprachen entschieden.</p>
@@ -1071,7 +1028,7 @@
     </div>
 
     <div class="task">
-      <span class="task-ref">Aufgabe 17 · Material: alle (M1–M14, gesamtes Modul)</span>
+      <span class="task-ref">Aufgabe 16 · Material: alle (M1–M14, gesamtes Modul)</span>
       <div class="q-meta"><span class="q-type frei">Freitext · Beurteilen</span></div>
       <p class="qtext">Beurteile: Hat die Bundesrepublik aus den Fehlern der 1990er-Jahre und des NSU für den Umgang mit rechtem Terror gelernt? Wäge Argumente ab und komm zu einem begründeten Urteil.
         <span class="sub">Nutze: Behördenversagen damals ↔ heutige Maßnahmen, aber auch Halle/Hanau und steigende Zahlen.</span></p>
